@@ -1,4 +1,2 @@
-# CursoJava
-# IFCD0005-CursoJava
-# IFCD0005-CursoJava
-# IFCD0005-CursoJava
+# EjerciciosPropuestos
+# EjerciciosPropuestos

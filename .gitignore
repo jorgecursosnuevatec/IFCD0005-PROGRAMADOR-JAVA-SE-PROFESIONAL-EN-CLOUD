@@ -26,6 +26,9 @@ drivers/
 target/
 
 
+# Created by https://www.toptal.com/developers/gitignore/api/java,eclipse,visualstudiocode,netbeans,bluej
+# Edit at https://www.toptal.com/developers/gitignore?templates=java,eclipse,visualstudiocode,netbeans,bluej
+
 ### bluej ###
 # BlueJ: A Java IDE for programming beginners. http://bluej.org
 
