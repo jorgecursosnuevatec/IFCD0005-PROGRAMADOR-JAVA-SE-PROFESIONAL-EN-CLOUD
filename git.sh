@@ -70,11 +70,7 @@ git reflog expire --expire=now --all
 
 # git gc --aggressive
 # git gc --prune=now
-git clean --f
-git repack
-git fsck
-git count-objects -v
-# git maintenance start
+
 time git status
 
 end=`date +%s`
