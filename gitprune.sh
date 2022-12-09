@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-12-09 SUBIDA INICIO CLASE"
+message="$(date)2022-12-09 TODO INCLUIDO EN LA CARPETA"
 fi
 
 start=`date +%s`

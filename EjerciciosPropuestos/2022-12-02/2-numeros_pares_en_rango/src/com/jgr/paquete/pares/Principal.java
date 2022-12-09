@@ -1,6 +1,5 @@
 package com.jgr.paquete.pares;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Principal. 1.- Realizar un programa que nos diga cuantos números
  * pares hay entre 127 y 346

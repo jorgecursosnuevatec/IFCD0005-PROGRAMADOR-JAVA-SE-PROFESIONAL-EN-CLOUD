@@ -33,7 +33,10 @@ public class LanzadoraFactorial {
 		catch (NumberFormatException e) {
 			System.out.println("no es un numero");
 		}
+		
+		sc.close();
 
 	}
+
 
 }

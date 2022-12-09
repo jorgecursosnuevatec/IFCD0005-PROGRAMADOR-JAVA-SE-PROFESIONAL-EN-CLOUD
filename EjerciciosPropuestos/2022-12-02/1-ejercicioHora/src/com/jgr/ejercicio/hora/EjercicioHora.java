@@ -2,7 +2,6 @@ package com.jgr.ejercicio.hora;
 
 import java.time.LocalDateTime;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EjercicioHora.
  * 
