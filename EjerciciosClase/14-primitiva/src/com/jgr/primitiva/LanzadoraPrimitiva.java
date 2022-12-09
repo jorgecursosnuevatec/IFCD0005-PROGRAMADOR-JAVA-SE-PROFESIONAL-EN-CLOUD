@@ -32,9 +32,13 @@ public class LanzadoraPrimitiva {
 
 		int contadorAciertos = 0;
 
-		for (int i = 0; i < ganadora.length && i < jugada.length; i++) {
-
-			contadorAciertos = ganadora[i] == jugada[i] ? 1 : 0;
+		for (int i = 0; i < ganadora.length; i++) {
+			for (int k = 0; k < jugada.length; k++) {
+				if (ganadora[i] == jugada[k]) {
+					contadorAciertos++;
+					break;
+				}
+			}
 
 		}
 

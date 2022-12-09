@@ -1,8 +1,8 @@
 package com.jgr.numeros.suma;
 
 /**
- * The Class NumerosSuma. numeros que tenemos que sumar hasta que superemos
- * 1000;
+ * The Class NumerosSuma. cuantos numeros tenemos que sumar hasta que superemos
+ * 1000?;
  */
 public class NumerosSuma {
 	public static void main(String[] args) {
