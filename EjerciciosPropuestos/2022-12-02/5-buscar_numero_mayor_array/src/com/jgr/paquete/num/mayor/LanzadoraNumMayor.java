@@ -39,6 +39,7 @@ public class LanzadoraNumMayor {
 					JOptionPane.ERROR_MESSAGE);
 
 		}
+		 
 
 	}
 
