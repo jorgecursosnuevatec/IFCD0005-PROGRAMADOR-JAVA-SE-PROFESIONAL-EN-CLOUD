@@ -52,7 +52,7 @@ public class GeneraCombinacionAleatoriaPrimitiva {
 		
 		System.out.println("veces que ha hecho el bucle->"+contaveces);
 		
-		//System.out.println("salgo de dowhile");
+		
 		int aux = 0;
 		
 		for (int i = 0; i < ganadora.length - 1; i++) {
@@ -65,15 +65,10 @@ public class GeneraCombinacionAleatoriaPrimitiva {
 			}
 		}
         
-        for (Integer numeroLoteria :ganadora) {
-        	System.out.println("numero->" + numeroLoteria);
-        	
-        }
-		
-        System.out.println("Veces que ha entrado en el bucle->"+contaveces);
-		
-		
-		
+		for (Integer numeroLoteria : ganadora) {
+			System.out.println("numero->" + numeroLoteria);
+
+		}
 		
 	}
 
