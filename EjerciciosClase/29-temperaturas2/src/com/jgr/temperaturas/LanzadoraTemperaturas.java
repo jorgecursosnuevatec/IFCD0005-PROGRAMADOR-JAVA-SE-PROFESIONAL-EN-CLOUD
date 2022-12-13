@@ -2,7 +2,7 @@ package com.jgr.temperaturas;
 
 /**
  * The Class LanzadoraTemperaturas. dada una serie de temperaturas tenemos que
- * ver cuantas hay superiores a la media
+ * ver cuantas hay superiores a la media convirtiendo el array de string a array de double
  */
 public class LanzadoraTemperaturas {
 
