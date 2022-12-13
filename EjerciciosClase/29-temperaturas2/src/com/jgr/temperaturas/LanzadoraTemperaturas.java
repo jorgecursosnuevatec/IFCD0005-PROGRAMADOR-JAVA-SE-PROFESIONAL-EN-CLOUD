@@ -9,16 +9,15 @@ public class LanzadoraTemperaturas {
 	public static void main(String[] args) {
 
 		//double[] tempera = { 23.7, 11.3, 18.4, 30.1, 28.5, 16.2 };
-		String valores = "23.7, 11.3, 18.4, 30.1, 28.5, 16.2" ;
-		
-		
-		String[] valoresFormat =valores.split(",");
-		double [] tempera= new double[valoresFormat.length];
-		
-		for (int i=0;i<valoresFormat.length;i++) {
-			tempera[i] = Double.valueOf(valoresFormat[i]);			
+		String valores = "23.7, 11.3, 18.4, 30.1, 28.5, 16.2";
+
+		String[] valoresFormat = valores.split(",");
+		double[] tempera = new double[valoresFormat.length];
+
+		for (int i = 0; i < valoresFormat.length; i++) {
+			tempera[i] = Double.valueOf(valoresFormat[i]);
 		}
-		
+
 		double mediaTemp = 0;
 		double acumTemp = 0;
 		int totOcurr = tempera.length;
