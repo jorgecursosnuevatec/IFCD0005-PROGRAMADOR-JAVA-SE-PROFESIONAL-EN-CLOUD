@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-12-12 BAJADOS EJERCICIOS PROFE"
+message="$(date)2022-12-13 HECHOS EJERCICIOS"
 fi
 
 start=`date +%s`
