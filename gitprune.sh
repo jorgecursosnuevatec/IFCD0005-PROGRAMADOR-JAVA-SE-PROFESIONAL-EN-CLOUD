@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date) 2022-12-14 SUBIDA DESDE CASA"
+message="$(date)  SUBIDA DESDE CASA"
 fi
 
 start=`date +%s`
@@ -73,7 +73,7 @@ git repack
 git count-objects -v
 
 
-echo "All files                       "
+echo "TODO SUBIDO "
 git add . 1>>$AddLog 2>>$AddLog
 git commit -m "$message" 1>>$CommitLog 2>>$CommitLog; git push 1>>$PushLog 2>>$PushLog
 

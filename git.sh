@@ -15,7 +15,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date) 2022-12-12 SUBIDA CLASE"
+message="$(date) 2022-12-13 leer y escribir archivos"
 fi
 
 start=`date +%s`
@@ -70,7 +70,11 @@ git reflog expire --expire=now --all
 
 # git gc --aggressive
 # git gc --prune=now
-
+git clean --f
+git repack
+git fsck
+git count-objects -v
+# git maintenance start
 time git status
 
 end=`date +%s`
