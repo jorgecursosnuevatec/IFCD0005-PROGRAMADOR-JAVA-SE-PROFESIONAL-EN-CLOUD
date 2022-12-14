@@ -29,7 +29,7 @@ public class GeneraBoletoPrimitiva {
 		do {
 				repetido = false;
 				numero = (int) (Math.random() * (NUMERO_MAXIMO + 1 - NUMERO_MINIMO) + NUMERO_MINIMO);
-				System.out.println("numero generado->"+numero);
+//				System.out.println("numero generado->"+numero);
 				// hasta que llegue al final,o el array este vacio o exista
 				for (int k = 0; k < NUMERO_APUESTAS && numerosQueVanATocar[k] != 0 && !repetido; k++) {
 					if (numerosQueVanATocar[k] == numero) {
@@ -40,8 +40,8 @@ public class GeneraBoletoPrimitiva {
 				if(!repetido) {
 					numerosQueVanATocar[guardadas]= numero;
 					guardadas++;
-					System.out.println("no esta repetido->"+numero);
-					System.out.println("guardados->"+guardadas);
+//					System.out.println("no esta repetido->"+numero);
+//					System.out.println("guardados->"+guardadas);
 				}
 				contaRepeticiones++;
 				
