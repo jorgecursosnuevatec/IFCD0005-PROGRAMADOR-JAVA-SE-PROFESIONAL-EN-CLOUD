@@ -23,12 +23,10 @@ import com.jgr.notas.coleccion.auxiliar.CalculaStreamMediaMinimoMaximo;
  */
 public class LanzadoraColeccion {
 	
-	
-
 	public static void main(String[] args) {
-		
-		List<Integer> numeros = new ArrayList<>();	
-		
+
+		List<Integer> numeros = new ArrayList<>();
+
 		final int TOPE_APUESTAS = 25;
 		final int NUMERO_MAXIMO = Integer.MAX_VALUE;
 		final int NUMERO_MINIMO = Integer.MIN_VALUE;
@@ -36,7 +34,7 @@ public class LanzadoraColeccion {
 		int numApuestas = 0;
 		int numero = 0;
 		int contaveces = 0;
-		
+
 		do {
 			numero = (int) (Math.random() * (NUMERO_MAXIMO - NUMERO_MINIMO) + NUMERO_MINIMO);
 
@@ -57,36 +55,32 @@ public class LanzadoraColeccion {
 			}
 
 			contaveces++;
-			System.out.println("contaveces dentro->"+contaveces);
+			System.out.println("contaveces dentro->" + contaveces);
 
+		} while (numApuestas < TOPE_APUESTAS && contaveces < 500);
 
-		} while (numApuestas < TOPE_APUESTAS && contaveces<500);
+		/*
+		 * Random random = new Random();
+		 * 
+		 * List<Integer> ints = random.ints(NUMERO_MAXIMO, NUMERO_MINIMO) .limit(20)
+		 * .boxed() .distinct() .collect(Collectors.toList());
+		 */
 		
 		/*
-		Random random = new Random();
-		
-		List<Integer> ints = random.ints(NUMERO_MAXIMO,  NUMERO_MINIMO)
-				.limit(20)
-				.boxed()
-				.distinct()				
-				.collect(Collectors.toList());
-		*/
-		System.out.println("Contaveces->"+contaveces);
-		System.out.println("Tamaño Lista->"+ numeros.size());
-		System.out.println("Repetidos->"+ (contaveces-numeros.size()));
-		
-		System.out.println("Media->"+CalculaStreamMediaMinimoMaximo.calculaMedia(numeros));
-		System.out.println("Mayor->"+CalculaStreamMediaMinimoMaximo.buscaMaximo(numeros));
-		System.out.println("Mayor->"+CalculaStreamMediaMinimoMaximo.buscaMinimo(numeros));
-		System.out.println("Mayor->"+CalculaStreamMediaMinimoMaximo.cuentaAprobados(numeros));
-		
+		System.out.println("Contaveces->" + contaveces);
+		System.out.println("Tamaño Lista->" + numeros.size());
+		System.out.println("Repetidos->" + (contaveces - numeros.size()));
+
+		System.out.println("Media->" + CalculaStreamMediaMinimoMaximo.calculaMedia(numeros));
+		System.out.println("Mayor->" + CalculaStreamMediaMinimoMaximo.buscaMaximo(numeros));
+		System.out.println("Mayor->" + CalculaStreamMediaMinimoMaximo.buscaMinimo(numeros));
+		System.out.println("Mayor->" + CalculaStreamMediaMinimoMaximo.cuentaAprobados(numeros));
+*/
 		try {
 			CalculaStreamMediaMinimoMaximo.generaLista().forEach(System.out::println);
-		} catch (NoSuchAlgorithmException e) {			
+		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		
-		
 
 	}
 

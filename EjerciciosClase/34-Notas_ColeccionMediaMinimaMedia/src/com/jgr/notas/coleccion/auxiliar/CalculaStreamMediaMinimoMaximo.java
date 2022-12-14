@@ -65,25 +65,25 @@ public final class CalculaStreamMediaMinimoMaximo {
 	public static Iterable<Integer> generaLista() throws NoSuchAlgorithmException {
 		
 		SecureRandom number = SecureRandom.getInstance("SHA1PRNG");
-		
+
 		List<Integer> lista = new ArrayList<>();
-		
-		for (int i=0;i<100;i++) {
-			
-			lista.add(number.nextInt());		
-			
+
+		for (int i = 0; i < 100; i++) {
+
+			lista.add(number.nextInt());
+
 		}
-		
-		
+
 		return lista.stream()
 				.filter(a->a>0)//solo positivos
+				.peek(a->System.out.println("CON DUPLICADOS-->"+a))
 				.distinct()//elimino duplicados
-				.peek(System.out::println)
-				.sorted()
-				.collect(Collectors.toList());//lo convierto a lista
+				.peek(a->System.out.println("SIN DUPLICADOS-->"+a))
+				.sorted(Comparator.naturalOrder())
+				.collect(Collectors.toList())
+				;//lo convierto a lista
 		
 	}
-	
 	
 
 }
