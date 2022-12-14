@@ -21,7 +21,7 @@ inicio=`date +%s`
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-12-10 HASTA EL 66,SEGUIR CON STREAM IV"
+message="$(date)2022-12-14 PROBANDO SI FUNCIONA"
 fi
 
 git add .
@@ -31,6 +31,12 @@ git add -A
 echo "Haciendo commit                \r\c"
 echo  "$message"
 git commit -am "$message" 1>>$CommitLog 2>>$CommitLog; git push 1>>$PushLog 2>>$PushLog
+
+
+
+echo "TODO SUBIDO "
+git add . 1>>$AddLog 2>>$AddLog
+git commit -m "$message" 1>>$CommitLog 2>>$CommitLog; git push 1>>$PushLog 2>>$PushLog
 
 end=`date +%s`
 
