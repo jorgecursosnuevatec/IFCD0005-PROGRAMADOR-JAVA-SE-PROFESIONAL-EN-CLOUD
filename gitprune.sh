@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-12-14 HECHOS EJERCICIOS"
+message="$(date) 2022-12-14 SUBIDA DESDE CASA"
 fi
 
 start=`date +%s`
@@ -73,6 +73,10 @@ git repack
 git count-objects -v
 
 
+echo "All files                       "
+git add . 1>>$AddLog 2>>$AddLog
+git commit -m "$message" 1>>$CommitLog 2>>$CommitLog; git push 1>>$PushLog 2>>$PushLog
+
 
 
 # git maintenance start
@@ -87,6 +91,8 @@ fin=`date +%s`
 let total_ns=$fin_ns-$inicio_ns
 let total=$fin-$inicio
 let total_min=($total/60)
+
+
 echo "ha tardado: -$total_ns- nanosegudos, -$total- segundos, -$total_min- minutos  "
 
 echo "Finalizado,hasta luego EJERCICIOS"
