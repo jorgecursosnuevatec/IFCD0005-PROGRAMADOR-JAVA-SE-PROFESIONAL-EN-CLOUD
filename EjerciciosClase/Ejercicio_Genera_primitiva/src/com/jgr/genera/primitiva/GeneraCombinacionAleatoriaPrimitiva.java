@@ -59,7 +59,7 @@ public class GeneraCombinacionAleatoriaPrimitiva {
 		 * for (Integer numeroLoteria : ganadora) { System.out.println("ANTES ORDENAR->"
 		 * + numeroLoteria); }
 		 */
-
+		//metodo burbuja
 		int aux = 0;
 		for (int i = 0; i < ganadora.length - 1; i++) {
 			for (int j = 0; j < ganadora.length - i - 1; j++) {
