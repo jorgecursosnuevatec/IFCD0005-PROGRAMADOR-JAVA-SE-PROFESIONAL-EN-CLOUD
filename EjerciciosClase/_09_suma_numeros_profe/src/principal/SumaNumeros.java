@@ -21,13 +21,16 @@ public class SumaNumeros {
 		*/
 		//solución 2
 		int menor, mayor;
-		if(a<b) {
+		/*if(a<b) {
 			menor=a;
 			mayor=b;
 		}else {
 			menor=b;
 			mayor=a;
-		}
+		}*/
+		//solución 3
+		menor=Math.min(a, b);
+		mayor=Math.max(a, b);
 		for(int i=menor;i<=mayor;i++) {
 			suma=suma+i;
 		}
