@@ -21,7 +21,7 @@ inicio=`date +%s`
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-12-14 PROBANDO SI FUNCIONA"
+message="$(date)2022-12-15 INICIO CLASE"
 fi
 
 git add .
