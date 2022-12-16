@@ -5,6 +5,8 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 /**
@@ -62,6 +64,8 @@ public final class CalculaStreamMediaMinimoMaximo {
 	}
 	
 	
+
+
 	public static Iterable<Integer> generaLista() throws NoSuchAlgorithmException {
 		
 		SecureRandom number = SecureRandom.getInstance("SHA1PRNG");
