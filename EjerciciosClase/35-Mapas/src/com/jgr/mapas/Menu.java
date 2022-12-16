@@ -33,7 +33,7 @@ public class Menu {
 				break;
 				
 			case 2:
-				aux.buscarNombre();
+//				aux.buscarNombre();
 				break;
 			case 3:
 //				mostrarAprobados();

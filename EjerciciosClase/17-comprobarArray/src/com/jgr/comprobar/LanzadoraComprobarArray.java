@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class LanzadoraComprobarArray.
  * dado un array ver si hay o no algun par. si lo hay termina de buscar

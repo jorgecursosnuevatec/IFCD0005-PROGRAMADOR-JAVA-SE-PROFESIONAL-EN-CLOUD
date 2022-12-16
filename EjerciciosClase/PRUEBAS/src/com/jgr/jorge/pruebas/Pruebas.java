@@ -1,41 +1,51 @@
 package com.jgr.jorge.pruebas;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
-
-
 
 /**
  * The Class Pruebas.
  */
 public class Pruebas {
 
-	/**
-	 * The main method.
-	 *
-	 * @param args the arguments
-	 */
+	
 	public static void main(String[] args) {
 		
-		final int NUMERO_MAXIMO = 5;// Integer.MAX_VALUE;
-		final int NUMERO_MINIMO = 1;// Integer.MIN_VALUE;
+		String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz";
+		String CHAR_UPPER = "abcdefghijklmnopqrstuvwxyz".toUpperCase();
+		String CHAR_TODO = CHAR_LOWER+CHAR_UPPER;
+        char[] characterArray = CHAR_TODO.toCharArray();
+    	List<String> listaLetras = new ArrayList<>();
+		final int LIMITE = 10;
+    	
+    	Map<Integer, Object> mapa = new HashMap<>();
+
+        for(char c : characterArray)//iterating through the character array
+        	listaLetras.add(String.valueOf(c));
+        
+		//listaLetras.forEach(System.out::println);
 		
-		
-		 List <Integer> listaEnteros = new ArrayList<>();
+        List<Integer> listaEnteros = IntStream.iterate(1, i -> i + 1).limit(listaLetras.size()).boxed()
+				.collect(Collectors.toList());
+        
+//        System.out.println("letras->"+listaLetras.size());
+//        System.out.println("numeros->"+listaEnteros.size());
+        
+		for (int i = 0; i < listaLetras.size(); i++) {
+			mapa.put(listaEnteros.get(i), listaLetras.get(i));
+		}
+
+		for (Entry<Integer, Object> par : mapa.entrySet()) {
+			System.out.println("clave->" + par.getKey());
+			System.out.println("valor->" + par.getValue());
+
+		}
 		 
-		 for (int i=0;i<10;i++) {
-			 listaEnteros.add(i);
-			 listaEnteros.add(i);
-		 }
-		 
-		 listaEnteros.forEach(System.out::println);
-		 listaEnteros.removeIf(p->p==2);
-		 System.out.println("\n despues");
-		 listaEnteros.forEach(System.out::println);
 	}
 
 }

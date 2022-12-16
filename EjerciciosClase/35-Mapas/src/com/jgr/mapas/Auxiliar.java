@@ -1,8 +1,10 @@
 package com.jgr.mapas;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 public class Auxiliar {
 	
@@ -25,6 +27,10 @@ public class Auxiliar {
 	
 	public int buscarNombre(String nombre) {
 		int retorno = 0;
+		
+		List<Integer>claves = agenda.keySet().stream().collect(Collectors.toList());		
+		List<String> valores = agenda.values().stream().collect(Collectors.toList());
+		
 		if (agenda.containsValue(nombre.toUpperCase())) {
 			for (Entry<Integer, String> par : agenda.entrySet()) {
 				if (par.getValue().equalsIgnoreCase(nombre)) {
