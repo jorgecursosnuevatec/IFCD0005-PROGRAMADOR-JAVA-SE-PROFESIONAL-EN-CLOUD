@@ -1,13 +1,12 @@
 package com.jgr.pruebas.listas;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class GeneraListasStream {
+public class GeneraStreamNumeros {
 
 	public static void main(String[] args) {
 		
