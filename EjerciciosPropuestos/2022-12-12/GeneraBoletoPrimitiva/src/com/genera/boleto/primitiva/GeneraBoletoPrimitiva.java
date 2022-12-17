@@ -7,11 +7,7 @@ package com.genera.boleto.primitiva;
  */
 public class GeneraBoletoPrimitiva {
 
-	/**
-	 * The main method.
-	 *
-	 * @param args the arguments
-	 */
+	
 	public static void main(String[] args) {
 		
 		int[] numerosQueVanATocar;
