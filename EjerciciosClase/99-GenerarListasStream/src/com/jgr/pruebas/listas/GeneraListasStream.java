@@ -32,12 +32,13 @@ public class GeneraListasStream {
 	List<Double> listaDouble1 = Stream
 			.generate(()->(double) Math.random()*100)
 			.peek(System.out::println)
-			.limit(10)			
-			.collect(Collectors.toList());
-			
+			.limit(10)
+			.toList()//cualquiera de las dos lo hace
+			//.collect(Collectors.toList())
+			;
 	
-	
-	List<Double> streamDouble3 =
+	listaDouble1.forEach(System.out::println);
+	List<Double> listaDouble3 =
 			DoubleStream //NO es un stream,no funcionan igual
 			.generate(() -> (double) Math.random() * 100)//genera numero aleatorio
 //			.peek(p->System.out.println("antes del filtro->"+p))
@@ -45,14 +46,15 @@ public class GeneraListasStream {
 			.limit(7)
 			.filter(p->(p>5))
 			.collect(Collectors.toList())//lo convertimos a lista
+			//.toList()//es inmutable, no se puede modificar la lista que devuelve
 			;//
-	
-	
-	streamDouble3.forEach(System.out::println);
-	streamDouble3.removeIf(p->p==6);
+		
+	listaDouble3.forEach(System.out::println);
+	listaDouble3.removeIf(p->p>=60);
+	System.out.println("borro de la lista->"+listaDouble3.removeIf(p->p>=60));
 	System.out.println("\ndespues");
 	
-	streamDouble3.forEach(System.out::println);
+	listaDouble3.forEach(System.out::println);
 	
 
 	//utilizando iterate puedo generarla de manera secuencial

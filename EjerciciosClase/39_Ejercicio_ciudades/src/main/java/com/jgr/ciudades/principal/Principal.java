@@ -13,7 +13,7 @@ public class Principal {
 
 	public static void main(String[] args) {
 		
-		List<Pais> paises = new ArrayList<>();
+		
 		int limite =10;
 		List<Double> listaDouble =
 				DoubleStream //NO es un stream,no funcionan igual

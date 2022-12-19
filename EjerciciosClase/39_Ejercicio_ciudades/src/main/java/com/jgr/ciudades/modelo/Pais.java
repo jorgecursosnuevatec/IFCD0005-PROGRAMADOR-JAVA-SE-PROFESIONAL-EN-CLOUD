@@ -1,5 +1,8 @@
 package com.jgr.ciudades.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,28 +20,24 @@ import lombok.extern.java.Log;
 public class Pais {
 
 	
-	private static int ultCiudad;	
-	private int numCiudad;
-	private String nombreCiudad;	
-	private double habitantesCiudad;
+	private static int ultPais;	
+	private int numPais;
 	private String nombrePais;
+	private List<Ciudad> ciudades;
+	
 
-	public Pais() {
-		numCiudad= ++ultCiudad;		
+	public Pais () {	
+		this.numPais=++ultPais;
+		this.ciudades = new ArrayList<>();
 	}
 	
-	
-	public Pais(String nombreCiudad, double habitantesCiudad) {		
+	public Pais(String nombrePais) {		
 		this();
-		this.nombreCiudad=nombreCiudad;
-		this.habitantesCiudad = habitantesCiudad;
+		this.nombrePais=nombrePais;		
 		
 	}
 	
-	
-	
-	
-	
+	public 
 	
 	
 	
