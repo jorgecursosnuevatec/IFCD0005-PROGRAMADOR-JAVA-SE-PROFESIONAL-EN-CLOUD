@@ -21,7 +21,7 @@ inicio=`date +%s`
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-12-19 FIN DE CLASE"
+message="$(date)2022-12-19 SEGUIR DESDE JDBC 79-MIN 7:53 Y PROBAR STATEMENT/PREPAREDSTATEMENT"
 fi
 
 git add .
