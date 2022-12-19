@@ -9,10 +9,8 @@ public class Menu {
 	static String nombre;
 	static int nota;
 					
-	
-	
 	public static void main(String[] args) {
-	
+
 		Scanner sc = new Scanner(System.in);
 		Map<Integer, String> notas = new HashMap<>();
 		Auxiliar aux = new Auxiliar();
@@ -22,27 +20,27 @@ public class Menu {
 		do {
 			mostrarMenu();
 			opcion = sc.nextInt();// lee la opción elegida
-			
+
 			switch (opcion) { // evaluamos
 			case 1:
-				if(aux.altaTlf(pedirTlf(), pedirNombre())) {
+				if (aux.altaTlf(pedirTlf(), pedirNombre())) {
 					System.out.println("alta realizada correctamente");
-				}else {
+				} else {
 					System.out.println("Telefono ducplicado");
 				}
 				break;
-				
+
 			case 2:
-//				aux.buscarNombre();
+				//				aux.buscarNombre();
 				break;
 			case 3:
-//				mostrarAprobados();
+				//				mostrarAprobados();
 				break;
 			case 4:
-//				mostrarExtremas();
+				//				mostrarExtremas();
 				break;
 			case 5:
-//				mostrarTodas();
+				//				mostrarTodas();
 			}
 		} while (opcion != 6);
 
