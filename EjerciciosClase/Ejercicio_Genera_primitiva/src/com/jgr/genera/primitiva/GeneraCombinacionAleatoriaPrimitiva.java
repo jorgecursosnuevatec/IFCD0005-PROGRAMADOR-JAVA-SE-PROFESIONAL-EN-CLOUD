@@ -1,5 +1,10 @@
 package com.jgr.genera.primitiva;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * The Class GeneraCombinacionAleatoriaPrimitiva.
@@ -71,10 +76,32 @@ public class GeneraCombinacionAleatoriaPrimitiva {
 			}
 		}
 
+		/*
 		for (Integer numeroLoteria : ganadora) {
 			System.out.println("numero->" + numeroLoteria);
+			}
+			
+		*/	
+			
+			
+		IntStream intStream = IntStream
+				.generate(() -> (int) (Math.random() * (NUMERO_MAXIMO - NUMERO_MINIMO) + NUMERO_MINIMO))
+				.peek(n -> System.out.println("valor->" + n))
+				.distinct() //distintos
+				.limit(TOPE_APUESTAS) //solo 6 numeros
+				.sorted(); //ordenados
 
-		}
+		intStream.forEach(System.out::println);
+
+		List<Integer> listaEnteros = Stream
+				.generate(() -> (int) (Math.random() * (NUMERO_MAXIMO - NUMERO_MINIMO) + NUMERO_MINIMO))
+				.distinct()//sin duplicados
+				.limit(TOPE_APUESTAS) //solo 6 numeros
+				.sorted()//ordenados
+				.collect(Collectors.toList()); //a lista
+		
+		listaEnteros.forEach(System.out::println);
+		
 
 	}
 
