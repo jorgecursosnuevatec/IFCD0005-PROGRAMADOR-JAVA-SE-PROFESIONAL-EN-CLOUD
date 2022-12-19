@@ -84,12 +84,15 @@ public class GeneraCombinacionAleatoriaPrimitiva {
 		*/	
 			
 			
+//		IntStream intStream = IntStream
+	
 		IntStream intStream = IntStream
 				.generate(() -> (int) (Math.random() * (NUMERO_MAXIMO - NUMERO_MINIMO) + NUMERO_MINIMO))
 				.peek(n -> System.out.println("valor->" + n))
 				.distinct() //distintos
 				.limit(TOPE_APUESTAS) //solo 6 numeros
-				.sorted(); //ordenados
+				.sorted()
+				; //ordenados
 
 		intStream.forEach(System.out::println);
 
