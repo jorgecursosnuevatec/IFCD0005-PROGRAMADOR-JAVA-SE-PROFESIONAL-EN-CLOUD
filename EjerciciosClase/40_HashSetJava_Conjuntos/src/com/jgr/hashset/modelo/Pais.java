@@ -1,4 +1,4 @@
-package com.jgr.ciudades.modelo;
+package com.jgr.hashset.modelo;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import lombok.Data;
-import lombok.extern.java.Log;
 
 
 public class Pais {
@@ -146,37 +144,6 @@ public class Pais {
 		if (ciudades != null) {
 			builder.append("ciudades=");
 			builder.append(ciudades);
-			builder.append(", ");
-		}
-		if (buscaMaxHabitantes() != null) {
-			builder.append("buscaMaxHabitantes()=");
-			builder.append(buscaMaxHabitantes());
-			builder.append(", ");
-		}
-		builder.append("getNumPais()=");
-		builder.append(getNumPais());
-		builder.append(", ");
-		if (getNombrePais() != null) {
-			builder.append("getNombrePais()=");
-			builder.append(getNombrePais());
-			builder.append(", ");
-		}
-		if (getCiudades() != null) {
-			builder.append("getCiudades()=");
-			builder.append(getCiudades());
-			builder.append(", ");
-		}
-		if (getClass() != null) {
-			builder.append("getClass()=");
-			builder.append(getClass());
-			builder.append(", ");
-		}
-		builder.append("hashCode()=");
-		builder.append(hashCode());
-		builder.append(", ");
-		if (super.toString() != null) {
-			builder.append("toString()=");
-			builder.append(super.toString());
 		}
 		builder.append("]");
 		return builder.toString();
