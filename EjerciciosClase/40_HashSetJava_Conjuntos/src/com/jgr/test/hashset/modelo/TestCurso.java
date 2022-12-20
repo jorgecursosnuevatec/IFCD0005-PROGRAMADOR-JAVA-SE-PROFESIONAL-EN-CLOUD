@@ -39,8 +39,6 @@ class TestCurso {
 		curso4 = new Curso("Curso4",4,"Tematica4",4.0);
 		
 		
-		
-		
 	}
 
 	@BeforeEach
