@@ -53,7 +53,7 @@ public class AgendaMain {
 		int edad=Integer.parseInt(sc.nextLine());
 		
 		
-		agendaService.guardarContactonombre=(telefono,new Contacto());
+//		agendaService.guardarContactonombre=(telefono,new Contacto());
 	}
 	static void buscarContacto() {
 		Scanner sc=new Scanner(System.in);
