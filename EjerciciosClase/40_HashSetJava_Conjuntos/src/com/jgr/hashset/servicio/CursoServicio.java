@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import com.jgr.hashset.modelo.Curso;
 
 
-
 /**
  * The Class CursoServicio.
  */
@@ -34,7 +33,7 @@ public class CursoServicio {
 	public boolean addCurso(Curso curso) {
 		return this.cursos.add(curso);
 	}
-	
+
 	/**
 	 * Adds the cursos.
 	 *
@@ -62,9 +61,7 @@ public class CursoServicio {
 	 * @return the optional
 	 */
 	public Optional<Curso> buscaCursoPorNombreStream(String nombre) {
-		return Optional.of(cursos.
-				stream().
-				filter(c -> c.getCursoNombre().equalsIgnoreCase(nombre)).findFirst().get());
+		return Optional.of(cursos.stream().filter(c -> c.getCursoNombre().equalsIgnoreCase(nombre)).findFirst().get());
 	}
 
 	/**
@@ -104,12 +101,12 @@ public class CursoServicio {
 	 * @return the iterable
 	 */
 	public Iterable<Curso> borraCursoPorPrecioStream(double precio) {
-		return this.cursos.
-				stream().
-				//Predicate<? super Curso> predicate
-				dropWhile(c->c.getPrecio()>=precio)//recibe un objeto y devuelve un boolean
-				.collect(Collectors.toList());		
+		return this.cursos.stream().
+		// Predicate<? super Curso> predicate
+				dropWhile(c -> c.getPrecio() >= precio)// recibe un objeto y devuelve un boolean
+				.collect(Collectors.toList());
 	}
+
 	/**
 	 * Borra curso por precio stream.
 	 *
@@ -117,19 +114,18 @@ public class CursoServicio {
 	 * @return the iterable
 	 */
 	public Iterable<Curso> borraCursoPorPrecio(double precio) {
-		
-		for (Curso c:cursos) {
-			
-			if (c.getPrecio()>=precio) {
+
+		for (Curso c : cursos) {
+
+			if (c.getPrecio() >= precio) {
 				cursos.remove(c);
 			}
-			
-			
+
 		}
 		return cursos;
-		
+
 	}
-	
+
 	/**
 	 * Gets the cursos .
 	 *
@@ -138,8 +134,7 @@ public class CursoServicio {
 	public Iterable<Curso> getCursos() {
 		return this.cursos;
 	}
-	
-	
+
 	/**
 	 * Busca curso.
 	 *
@@ -147,71 +142,58 @@ public class CursoServicio {
 	 * @return the optional,relleno si existe
 	 */
 	public Optional<Curso> buscaCurso(Curso cur) {
-		Curso curRet =null;
-		
+		Curso curRet = null;
+
 		if (cursos.contains(cur)) {
-			
-			for (Curso c:cursos) {
-				
-				if(c.equals(cur)) {
+
+			for (Curso c : cursos) {
+
+				if (c.equals(cur)) {
 					curRet = new Curso();
-					curRet= cur;
+					curRet = cur;
 				}
 			}
-			
+
 		}
-		
+
 		return Optional.ofNullable(curRet);
-		
+
 	}
-	
+
 	/**
 	 * Duracion media stream.
 	 *
 	 * @return the double
 	 */
 	public Double duracionMediaStream() {
-		return this.cursos
-				.stream()
-				.mapToInt(c->c.getDuracion()) //obtengo la duracion en int
-				.average()
-				.orElse(0);
+		return this.cursos.stream().mapToInt(c -> c.getDuracion()) // obtengo la duracion en int
+				.average().orElse(0);
 		/*
-		return this.cursos
-				.stream()
-				.mapToInt(Curso::getDuracion)
-				.average()
-				.orElse(0);
-		*/
-				
-				
+		 * return this.cursos .stream() .mapToInt(Curso::getDuracion) .average()
+		 * .orElse(0);
+		 */
+
 	}
-	
+
 	/**
 	 * Duracion media.
 	 *
 	 * @return the double
 	 */
 	public double duracionMedia() {
-		
-		int longitud= this.cursos.size();
-		
-		int acumulador =0;
-		
-		for (Curso c: this.cursos) {
-			
-			acumulador+=c.getDuracion();
-			
+
+		int longitud = this.cursos.size();
+
+		int acumulador = 0;
+
+		for (Curso c : this.cursos) {
+
+			acumulador += c.getDuracion();
+
 		}
-		
-		return (double) acumulador/longitud;
-		
-	
-		
+
+		return (double) acumulador / longitud;
+
 	}
-	
-	
-	
-	
-	
+
 }
