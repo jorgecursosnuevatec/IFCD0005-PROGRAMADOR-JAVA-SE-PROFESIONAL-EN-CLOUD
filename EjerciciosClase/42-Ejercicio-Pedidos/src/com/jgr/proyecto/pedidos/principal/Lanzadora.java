@@ -37,7 +37,7 @@ public class Lanzadora {
 		}
 		
 		pedidosServicio.aniadeListaPedidos(pedidosLista);		
-		pedidosServicio.devuelvePedidos().forEach(System.out::println);
+		
 		
 		System.out.println("pedido mas reciente->"+pedidosServicio.buscaPedidoMasReciente());
 

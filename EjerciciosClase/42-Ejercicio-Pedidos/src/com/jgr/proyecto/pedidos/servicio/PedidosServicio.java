@@ -1,23 +1,40 @@
 package com.jgr.proyecto.pedidos.servicio;
 
+import static org.junit.jupiter.api.DynamicTest.stream;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.jgr.proyecto.pedidos.modelo.Pedido;
-import com.jgr.proyecto.pedidos.modelo.PedidoComparator;
 
+import com.jgr.proyecto.pedidos.modelo.Pedido;
+
+
+/**
+ * The Class PedidosServicio.
+ */
 public class PedidosServicio {
 	
+	/** The pedidos. */
 	List<Pedido> pedidos;
 	
+	/**
+	 * Pedidos servicio.
+	 */
 	public void pedidosServicio() {
 		
 		this.pedidos= new ArrayList<>();
 	}
 	
 	
+	/**
+	 * Adds the pedido.
+	 *
+	 * @param ped the ped
+	 * @return the optional
+	 */
 	public Optional<Pedido> addPedido(Pedido ped) {
 		
 		
@@ -29,18 +46,37 @@ public class PedidosServicio {
 		 }
 		
 		 return pedRet;
-		
-		
 	}
 	
 	
-	public Iterable<Pedido> aniadeListaPedidos(Iterable<Pedido> pedidos){
+	/**
+	 * Aniade lista pedidos.
+	 *
+	 * @param pedidos the pedidos
+	 * @return the iterable
+	 */
+	public List<Pedido> aniadeListaPedidos(List<Pedido> pedidosB) {
 		
-		return this.pedidos=(List<Pedido>) pedidos;
+		System.out.println("entro en aniadeLista"+this.pedidos);
+
+		List<Pedido> temporal = new ArrayList<>();
+		temporal = this.pedidos;
+
 		
+		 return this.pedidos = Stream.concat(temporal.stream(), pedidosB.stream())
+	                .collect(Collectors.toList());
+	    
+		
+
 	}
 	
 	
+	/**
+	 * Busca pedido.
+	 *
+	 * @param ped the ped
+	 * @return the optional
+	 */
 	public Optional<Pedido> buscaPedido(Pedido ped) {
 		
 	Optional<Pedido> pedRet=null;
@@ -54,11 +90,14 @@ public class PedidosServicio {
 		
 	}
 	
-	public Iterable<Pedido> devuelvePedidos(){
-		return this.pedidos.sort(null);
-	}
 	
 	
+	
+	/**
+	 * Busca pedido mas reciente.
+	 *
+	 * @return the pedido
+	 */
 	public Pedido buscaPedidoMasReciente() {
 		
 		Stream<Pedido> pedidosStream = pedidos.stream();
@@ -71,5 +110,39 @@ public class PedidosServicio {
 	}
 	
 	
+	/**
+	 * Devuelve pedidos.
+	 *
+	 * @return the list
+	 */
+	public List<Pedido> devuelvePedidos() {
+		
+		return this.pedidos;
+		
+		
+		
+	}
+	
+	/**
+	 * Borra pedido.
+	 *
+	 * @param pedido the pedido
+	 * @return true, if successful
+	 */
+	public boolean borraPedido(Pedido pedido) {
+		return this.pedidos.remove(pedido);
+	}
+
+	
+	/**
+	 * Busca pedido por nombre stream.
+	 *
+	 * @param nombre the nombre
+	 * @return the optional
+	 */
+	public Optional<Pedido> buscaPedidoPorNombreStream(String nombre) {
+		return Optional.of(pedidos.stream().filter(c -> c.getNomProducto().equalsIgnoreCase(nombre)).findFirst().get());
+	}
+
 
 }

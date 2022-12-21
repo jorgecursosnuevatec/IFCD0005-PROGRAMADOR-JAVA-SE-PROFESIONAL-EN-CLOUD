@@ -59,7 +59,8 @@ public class Pedido {
 			return false;
 		}
 		Pedido other = (Pedido) obj;
-		return Objects.equals(this.fecPedido, other.fecPedido) && Objects.equals(this.nomProducto, other.nomProducto)
+		return Objects.equals(this.fecPedido, other.fecPedido)
+				&& Objects.equals(this.nomProducto, other.nomProducto)
 				&& Double.doubleToLongBits(this.total) == Double.doubleToLongBits(other.total);
 	}
 
@@ -83,7 +84,6 @@ public class Pedido {
 		return builder.toString();
 	}
 
-	@Override
 	public int compare(Object o1, Object o2) {
 		return  ((Pedido) o1).getFecPedido().compareTo(((Pedido) o2).getFecPedido()) ;
 		
