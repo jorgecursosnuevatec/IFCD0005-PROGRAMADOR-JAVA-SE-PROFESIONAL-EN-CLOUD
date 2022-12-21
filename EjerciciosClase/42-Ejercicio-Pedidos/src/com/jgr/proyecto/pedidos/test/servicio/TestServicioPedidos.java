@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -21,9 +22,11 @@ import com.jgr.proyecto.pedidos.servicio.PedidosServicio;
 class TestServicioPedidos {
 	
 	private int limite =5;	
-	private Pedido p1;
-	private Pedido p2;
+	private Pedido pedido1;
+	private Pedido pedido2;
 	private List<Pedido> pedidosLista ;
+	
+	
 	
 	private PedidosServicio pedidosServicio;
 
@@ -53,13 +56,10 @@ class TestServicioPedidos {
 			pedidosLista.add(pedi);
 			
 		}
-		System.out.println("en metodo setUp");
-		pedidosServicio.aniadeListaPedidos(pedidosLista);
-		System.out.println("pedidos lista"+pedidosLista);
-		
-		
-		p1 = new Pedido("PedidosetUp1",new Date(),666);
-		p1 = new Pedido("PedidosetUp2",new Date(),777);
+	
+		pedidosServicio.aniadeListaPedidos(pedidosLista);	
+		pedido1 = new Pedido("Pedido1",new Date(),666);
+		pedido2 = new Pedido("Pedido2",new Date(),777);
 		
 	}
 
@@ -82,7 +82,7 @@ class TestServicioPedidos {
 		
 		assertEquals(limite,pedidosServicio.devuelvePedidos().size(),
 				()->"No coincide la longitud");
-		pedidosServicio.addPedido(p1);
+		pedidosServicio.addPedido(pedido1);
 		
 		assertEquals(++limite,pedidosServicio.devuelvePedidos().size(),
 				()->"Despùes de añadir");
@@ -93,20 +93,20 @@ class TestServicioPedidos {
 	@Test
 	void TestbuscaPedido() {
 		
-		pedidosServicio.addPedido(p1);
+		pedidosServicio.addPedido(pedido1);
 		int ultimo= pedidosServicio.devuelvePedidos().size()-1;
-		assertTrue(p1==pedidosServicio.devuelvePedidos().get(ultimo),
+		assertTrue(pedido1==pedidosServicio.devuelvePedidos().get(ultimo),
 				()->"No lo ha puesto el ultimo");
 		
-		assertNotNull(pedidosServicio.buscaPedido(p1),
-				()->"No ha encontrado el pedido p1");
+		assertNotNull(pedidosServicio.buscaPedido(pedido1),
+				()->"No ha encontrado el pedido pedido1");
 		
-		Pedido pMetodo =pedidosServicio.buscaPedido(p1).get();
-		String s1=p1.getNomProducto().toLowerCase();
+		Pedido pMetodo =pedidosServicio.buscaPedido(pedido1).get();
+		String s1=pedido1.getNomProducto().toLowerCase();
 		String s2=pMetodo.getNomProducto().toLowerCase();
 		
 		assertEquals(s1,s2,()->"No son iguales los nombres");
-		assertEquals(p1,pMetodo,()->"No son iguales los objetos");
+		assertEquals(pedido1,pMetodo,()->"No son iguales los objetos");
 		
 	}
 
@@ -114,12 +114,11 @@ class TestServicioPedidos {
 	
 	@Test
 	void testAniadeListaPedidos() {
-		System.out.println("antes del equals");
+	
 		assertEquals(limite,pedidosServicio.devuelvePedidos().size(),
 				()->"No coincide la longitud del array con lo devuelto");
 		
-		System.out.println("pedidosLista"+pedidosLista);
-		
+	
 		pedidosServicio.aniadeListaPedidos(pedidosLista);
 		
 		assertTrue((limite*2)==pedidosServicio.devuelvePedidos().size(),
@@ -128,16 +127,40 @@ class TestServicioPedidos {
 				);
 		
 	}
-	/*
-	 * 
+	
+	 
 	@Test
 	void testBuscaPedido() {
-		fail("Not yet implemented");
+		
+		Pedido ped1 = pedidosServicio.buscaPedidoMasReciente();		
+		
+		assertEquals(ped1,pedidosServicio.buscaPedido(ped1).get(),
+				()-> "No son iguales ped1"+ped1.toString() 
+				+ "resultado->"+pedidosServicio.buscaPedido(ped1).get());
+		
+		Pedido ped2= pedidosServicio.devuelvePedidos().get(0);
+		
+		assertEquals(ped2,pedidosServicio.devuelvePedidos().get(0),
+				()-> "No son iguales ped2"+ped2.toString() 
+				+ "resultado->"+pedidosServicio.buscaPedido(ped1).get());
+		
+		
 	}
+	
 
 	@Test
 	void testBuscaPedidoMasReciente() {
-		fail("Not yet implemented");
+		
+		List<Pedido> pedidosList = pedidosServicio
+				.devuelvePedidos()
+				.stream()
+				.sorted(Comparator.comparing(Pedido::getFecPedido).reversed())
+				.collect(Collectors.toList());
+		
+		Pedido pedidoAnt = pedidosList.get(0);
+		assertEquals(pedidoAnt,pedidosServicio.buscaPedidoMasReciente(),()->"No coinciden");
+		
+		
 	}
-*/
+
 }
