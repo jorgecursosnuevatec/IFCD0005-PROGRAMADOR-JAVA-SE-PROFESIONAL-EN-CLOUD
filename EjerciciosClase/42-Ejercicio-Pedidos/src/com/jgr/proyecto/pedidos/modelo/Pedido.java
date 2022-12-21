@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.Objects;
 
-public class Pedido implements Comparator{
+public class Pedido {
 	
 	private String nomProducto;
 	private Date fecPedido;
