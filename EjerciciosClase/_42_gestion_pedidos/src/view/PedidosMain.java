@@ -3,6 +3,7 @@ package view;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import model.Pedido;
@@ -12,26 +13,32 @@ public class PedidosMain {
 	
 	
 	static PedidosService pedidosService=new PedidosService();
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args)  {
 		Scanner sc=new Scanner(System.in);
 		int opcion;
 		do {
 			mostrarMenu();
-			opcion=sc.nextInt();//lee la opción elegida
-			switch(opcion) { //evaluamos
-				case 1:
-					grabarPedido();
-					break;
-				case 2:
-					buscarPedidoReciente();
-					break;
-				case 3:
-					mostrarPedidos();
-					break;
-				
-				
-				case 4:
-					System.out.println("---Adios---");
+			try {
+				opcion=Integer.parseInt(sc.nextLine());//lee la opción elegida
+				switch(opcion) { //evaluamos
+					case 1:
+						grabarPedido();
+						break;
+					case 2:
+						buscarPedidoReciente();
+						break;
+					case 3:
+						mostrarPedidos();
+						break;
+					
+					
+					case 4:
+						System.out.println("---Adios---");
+				}
+			}
+			catch(NumberFormatException ex) {
+				System.out.println("Debes elegir opción correcta");
+				opcion=0; //para que vuelva a generar el bucle
 			}
 		}while(opcion!=4);
 
@@ -43,7 +50,7 @@ public class PedidosMain {
 		System.out.println("4.- Salir");
 		
 	}
-	static void grabarPedido() throws ParseException {
+	static void grabarPedido()  {
 		Scanner sc=new Scanner(System.in);
 		//para el parseado de fechas
 		SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
@@ -52,11 +59,16 @@ public class PedidosMain {
 		double precio;
 		System.out.println("Introduce producto");
 		producto=sc.nextLine();
-		System.out.println("Introduce fecha (dia/mes/año)");		
-		fecha=format.parse(sc.nextLine());
-		System.out.println("Introduce precio");
-		precio=Double.parseDouble(sc.nextLine());		
-		pedidosService.guardarPedido(producto, fecha, precio);
+		System.out.println("Introduce fecha (dia/mes/año)");	
+		try {
+			fecha=format.parse(sc.nextLine());
+			System.out.println("Introduce precio");
+			precio=Double.parseDouble(sc.nextLine());		
+			pedidosService.guardarPedido(producto, fecha, precio);
+		}
+		catch(ParseException ex) {
+			System.out.println("La fecha no es válida y el pedido no se guardará");
+		}
 	}
 	static void buscarPedidoReciente() {
 		Pedido pedido=pedidosService.pedidoMasReciente();

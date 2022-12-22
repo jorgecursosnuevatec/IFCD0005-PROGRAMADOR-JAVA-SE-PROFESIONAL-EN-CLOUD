@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Test1 {
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) {
 		Date d1=new Date();
 		Date d2=new Date(3345022223495L);
 		//comprobaciones fechas
@@ -24,9 +24,14 @@ public class Test1 {
 		
 		//parseado de fechas
 		SimpleDateFormat format2=new SimpleDateFormat("dd-MM-yyyy");
-		String f="11-08-2011";
-		Date mifecha=format2.parse(f);
-		System.out.println(format.format(mifecha));
+		String f="11-08*2011";
+		try {
+			Date mifecha=format2.parse(f);
+			System.out.println(format.format(mifecha));
+		}
+		catch(ParseException ex) {
+			System.out.println("El formato de fecha no es correcto");
+		}
 	}
 
 }
