@@ -1,9 +1,13 @@
 package com.jgr.proyecto.pedidos.principal;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
@@ -20,39 +24,70 @@ public class Lanzadora {
 	static long NUMERO_MINIMO = Long.MIN_VALUE;
 	public static void main(String[] args) {
 		
-		PedidosServicio pedidosServicio = new PedidosServicio();		
-		List<Pedido> pedidosLista = new ArrayList<Pedido> ();		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("mete numero");
 		
-		generaLongAleatorio().forEach(System.out::println);
-		
-		Pedido pedi;
-		for(int i=0;i<10;i++) {
+		try{
+			var opcion=sc.nextInt();	
+		}catch(InputMismatchException in) {
 			
-			pedi = new Pedido();			
-			pedi.setFecPedido(new Date(generaLongAleatorio().get(i)));			
-			pedi.setNomProducto("Nombre"+i);
-			pedi.setTotal(i*i+1);		
-			pedidosLista.add(pedi);
+			
+			System.out.println("in.getLocalizedMessage()->"+in.getLocalizedMessage());
+			System.out.println("in.getCause()->"+in.getCause());
+			System.out.println("in.getClass()->"+in.getClass());
+			System.out.println("in.getMessage()->"+in.getMessage());
+			System.out.println("in.getStackTrace()->"+in.getStackTrace());
+			System.out.println("in.fillInStackTrace()->"+in.fillInStackTrace());
+			System.out.println("in.printStackTrace()->");
+			in.printStackTrace();
+			System.out.println("in.toString()->"+in.toString());
+			
+			
+			for (StackTraceElement t:in.getStackTrace()) {
+				System.out.println("StackTraceElement->"+t);
+			}
+			
+			for (Throwable t:in.getSuppressed()) {
+				System.out.println("Throwable->"+t);
+				
+			}
+
+			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+			Date fecha;
+			System.out.println("mete fecha");
+			
+				try {
+					fecha=formato.parse(sc.nextLine());
+				} catch (ParseException e) {
+					System.out.println("e.getLocalizedMessage()->"+e.getLocalizedMessage());
+					System.out.println("e.getCause()->"+e.getCause());
+					System.out.println("e.getClass()->"+e.getClass());
+					System.out.println("e.getMessage()->"+e.getMessage());
+					System.out.println("e.getStackTrace()->"+e.getStackTrace());
+					System.out.println("e.fillInStackTrace()->"+e.fillInStackTrace());
+					System.out.println("e.printStackTrace()->");
+					e.printStackTrace();
+					System.out.println("e.toString()->"+e.toString());
+					
+					
+					for (StackTraceElement t:e.getStackTrace()) {
+						System.out.println("StackTraceElement->"+t);
+					}
+					
+					for (Throwable t:e.getSuppressed()) {
+						System.out.println("Throwable->"+t);
+						
+					}
+				}
+				
+			
+			
+			
 			
 		}
 		
-		pedidosServicio.aniadeListaPedidos(pedidosLista);		
-		
-		
-		System.out.println("pedido mas reciente->"+pedidosServicio.buscaPedidoMasReciente());
-
 	}
 	
 	
-	static private List<Long> generaLongAleatorio() {
-		return 
-				Stream.generate(()-> new Random()
-//						.nextInt())
-						.nextLong())
-						.limit(limite)//10 elementos
-						.collect(Collectors.toList());
-						
-		
-	}
-
+	
 }

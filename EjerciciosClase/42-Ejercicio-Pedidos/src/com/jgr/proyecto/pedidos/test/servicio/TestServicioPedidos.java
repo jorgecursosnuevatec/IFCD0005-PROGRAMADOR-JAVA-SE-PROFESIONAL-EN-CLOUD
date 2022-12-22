@@ -19,21 +19,43 @@ import org.junit.jupiter.api.Test;
 import com.jgr.proyecto.pedidos.modelo.Pedido;
 import com.jgr.proyecto.pedidos.servicio.PedidosServicio;
 
+
+/**
+ * The Class TestServicioPedidos.
+ */
 class TestServicioPedidos {
 	
+	/** The limite. */
 	private int limite =5;	
+	
+	/** The pedido 1. */
 	private Pedido pedido1;
+	
+	/** The pedido 2. */
 	private Pedido pedido2;
+	
+	/** The pedidos lista. */
 	private List<Pedido> pedidosLista ;
 	
 	
 	
+	/** The pedidos servicio. */
 	private PedidosServicio pedidosServicio;
 
+	/**
+	 * Sets the up before class.
+	 *
+	 * @throws Exception the exception
+	 */
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 	}
 
+	/**
+	 * Sets the up.
+	 *
+	 * @throws Exception the exception
+	 */
 	@BeforeEach
 	void setUp() throws Exception {
 		
@@ -64,6 +86,9 @@ class TestServicioPedidos {
 	}
 
 	
+	/**
+	 * Test devuelve pedidos.
+	 */
 	@Test
 	void testDevuelvePedidos() {
 		
@@ -77,6 +102,9 @@ class TestServicioPedidos {
 	
 	
 	
+	/**
+	 * Test add pedido.
+	 */
 	@Test
 	void testAddPedido() {
 		
@@ -90,6 +118,9 @@ class TestServicioPedidos {
 		
 	}
 	
+	/**
+	 * Testbusca pedido.
+	 */
 	@Test
 	void TestbuscaPedido() {
 		
@@ -112,6 +143,9 @@ class TestServicioPedidos {
 
 	
 	
+	/**
+	 * Test aniade lista pedidos.
+	 */
 	@Test
 	void testAniadeListaPedidos() {
 	
@@ -129,6 +163,9 @@ class TestServicioPedidos {
 	}
 	
 	 
+	/**
+	 * Test busca pedido.
+	 */
 	@Test
 	void testBuscaPedido() {
 		
@@ -148,6 +185,9 @@ class TestServicioPedidos {
 	}
 	
 
+	/**
+	 * Test busca pedido mas reciente.
+	 */
 	@Test
 	void testBuscaPedidoMasReciente() {
 		
