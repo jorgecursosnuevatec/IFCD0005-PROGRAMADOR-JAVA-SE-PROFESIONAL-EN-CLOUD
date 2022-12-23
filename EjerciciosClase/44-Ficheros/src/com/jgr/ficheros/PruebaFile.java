@@ -1,6 +1,8 @@
 package com.jgr.ficheros;
 
 import java.io.File;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * The Class PruebaFile.
@@ -19,6 +21,7 @@ public class PruebaFile {
 		System.out.println("Es fichero->"+ficheroFile.isFile());
 		System.out.println("Es directorio->"+ficheroFile.isDirectory());
 		System.out.println("Intenta borrarlo->"+ficheroFile.delete());
+		
 		
 		
 		
