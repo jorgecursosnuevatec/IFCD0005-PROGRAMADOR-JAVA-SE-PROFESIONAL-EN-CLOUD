@@ -1,0 +1,220 @@
+package com.jgr.cursos.repositorio;
+
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import com.jgr.cursos.auxiliar.MiObjectOutputStream;
+import com.jgr.cursos.modelo.Curso;
+
+
+/**
+ * The Class CursoRepositorio.
+ */
+public class CursoRepositorio implements ICursoRepositorio {
+	
+	/** The cursos. */
+	private List<Curso> cursos;	
+	
+	/** The fichero cursos. */
+	private ObjectOutputStream ficheroCursos;
+	
+	/** The nom fichero. */
+	private final String nomFichero="nombreFichero.txt";
+	
+	/** The primera vez. */
+	private boolean primeraVez;
+	
+	/**
+	 * Instantiates a new curso repositorio.
+	 */
+	public CursoRepositorio(){		
+		
+		if(existeFichero()) {
+			borrarFichero();			
+		}
+		this.cursos= new ArrayList<>();
+		crearFichero();
+		this.primeraVez=true;
+		
+	}
+	
+	/**
+	 * Crear fichero.
+	 */
+	public void crearFichero() {
+		ObjectOutputStream oosRet = null;		
+		try(FileOutputStream fos= new FileOutputStream(nomFichero);
+				ObjectOutputStream oos = new ObjectOutputStream(fos);){			
+			oosRet= oos;		
+			
+		} catch (FileNotFoundException e) {
+			
+			e.printStackTrace();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		this.ficheroCursos=oosRet;
+	}
+
+		
+
+	
+	/**
+	 * Existe fichero.
+	 *
+	 * @return true, if successful
+	 */
+	@Override
+	public boolean existeFichero(){
+		var archivo = new File(this.nomFichero);
+		return archivo.exists();
+	}
+	
+	/**
+	 * Borrar fichero.
+	 */
+	@Override
+	public void borrarFichero() {
+		var archivo = new File(this.nomFichero);		
+			archivo.delete();
+		System.out.println("Se ha borrado el archivo");
+		
+	}
+
+	/**
+	 * Listar cursos.
+	 *
+	 * @return the list
+	 */
+	@Override
+	public List<Curso> listarCursos(){
+		
+		if(this.cursos.size()>0) {
+			this.cursos.clear();
+		}
+		
+		try(ObjectInputStream ois = new ObjectInputStream(
+                new FileInputStream(this.nomFichero))){		
+//como leemos un objeto serializado el fin fichero es EOFException exc,no se puede controlar 
+//de otra manera el fin fichero			
+			
+			for(;;) {
+				this.cursos.add((Curso) ois.readObject());
+			}
+			
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (EOFException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		};
+		 
+		
+		
+		return this.cursos;
+
+		
+	}
+
+	/**
+	 * Escribir curso.
+	 *
+	 * @param curso the curso
+	 */
+	@Override
+	public void escribirCurso(Curso curso){
+		if(primeraVez) {
+			escribirCursoPrimeraVez(curso);
+			}else {
+				escribirCursoResto(curso);
+			}
+	}
+	
+	/**
+	 * Escribir curso primera vez.
+	 *
+	 * @param curso the curso
+	 */
+	public void escribirCursoPrimeraVez(Curso curso) {
+		
+		try(ObjectOutputStream oos = this.ficheroCursos;) {
+			
+			oos.writeObject(curso);			
+			this.primeraVez=false;
+		} catch (IOException e) {
+		
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Escribir curso resto.
+	 *    // Se usa un ObjectOutputStream que no escriba una cabecera en
+            // el stream.
+     * https://www.chuidiang.org/java/ficheros/ObjetosFichero.php
+	 * @param curso the curso
+	 */
+	public void escribirCursoResto(Curso curso) {
+		  
+		  try(MiObjectOutputStream oos = (MiObjectOutputStream) this.ficheroCursos;) {
+			oos.writeUnshared(curso);
+			
+		} catch (IOException e) {
+	
+			e.printStackTrace();
+		}
+	}
+	
+
+	/**
+	 * Buscar curso por nombre.
+	 *
+	 * @param nombreCurso the nombre curso
+	 * @return the optional
+	 */
+	@Override
+	public Optional<Curso> buscarCursoPorNombre(String nombreCurso){
+	
+		return this.cursos
+				.stream()
+				.filter(c->c.getNombre().equalsIgnoreCase(nombreCurso))
+				.findAny();
+	}
+	
+	/**
+	 * Buscar curso por categoria.
+	 *
+	 * @param nombreCategoria the nombre categoria
+	 * @return the list
+	 */
+	@Override
+	public List<Curso> buscarCursoPorCategoria(String nombreCategoria){
+	
+		return this.cursos
+				.stream()
+				.filter(c->c.getCategoria().equalsIgnoreCase(nombreCategoria))
+				.collect(Collectors.toList());
+	}
+
+
+
+}
