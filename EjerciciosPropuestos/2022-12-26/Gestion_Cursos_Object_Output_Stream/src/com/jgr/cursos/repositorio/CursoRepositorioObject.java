@@ -114,6 +114,8 @@ public class CursoRepositorioObject implements ICursoRepositorio {
 //de otra manera el fin fichero			
 			
 			for(;;) {
+//				this.cursos.add((Curso) ois.readObject());
+//				System.out.println("curso leido->"+ ois.readObject());
 				this.cursos.add((Curso) ois.readObject());
 			}
 			
@@ -123,7 +125,8 @@ public class CursoRepositorioObject implements ICursoRepositorio {
 			e.printStackTrace();
 		} catch (EOFException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			System.out.println("EOFException al leer");
+//			e1.printStackTrace();
 		} catch (IOException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
@@ -133,7 +136,7 @@ public class CursoRepositorioObject implements ICursoRepositorio {
 		};
 		 
 		
-		
+		System.out.println("Cursos leidos"+cursos.size());
 		return this.cursos;
 
 		
@@ -166,11 +169,10 @@ try(ObjectInputStream ois = new ObjectInputStream(
 		
 		*/
 		
+	
 		
 		try(ObjectOutputStream oos = new ObjectOutputStream(
-                new FileOutputStream(this.nomFichero))) {	
-			
-			
+                new FileOutputStream(this.nomFichero))) {
 			oos.writeObject(curso);			
 			this.primeraVez=false;
 		} catch (IOException e) {
@@ -187,10 +189,13 @@ try(ObjectInputStream ois = new ObjectInputStream(
 	 * @param curso the curso
 	 */
 	public void escribirCursoResto(Curso curso) {
+		
 		  
-		  try(MiObjectOutputStream oos= new  MiObjectOutputStream ( new ObjectOutputStream(
-	                new FileOutputStream(this.nomFichero)))) {
-	                	oos.writeUnshared(curso);
+		  try(MiObjectOutputStream oos= new  MiObjectOutputStream (
+	                new FileOutputStream(this.nomFichero,true))) {
+			  		Curso cursoNuevo;
+			  		cursoNuevo= curso;
+	                	oos.writeUnshared(cursoNuevo);
 			
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -213,7 +218,9 @@ try(ObjectInputStream ois = new ObjectInputStream(
 	@Override
 	public Optional<Curso> buscarCursoPorNombre(String nombreCurso){
 	
-		return this.cursos
+		
+		
+		return this.listarCursos()
 				.stream()
 				.filter(c->c.getNombre().equalsIgnoreCase(nombreCurso))
 				.findAny();
@@ -226,9 +233,11 @@ try(ObjectInputStream ois = new ObjectInputStream(
 	 * @return the list
 	 */
 	@Override
-	public List<Curso> buscarCursoPorCategoria(String nombreCategoria){
+	public List<Curso> buscarCursosPorCategoria(String nombreCategoria){
 	
-		return this.cursos
+		
+		
+		return this.listarCursos()
 				.stream()
 				.filter(c->c.getCategoria().equalsIgnoreCase(nombreCategoria))
 				.collect(Collectors.toList());

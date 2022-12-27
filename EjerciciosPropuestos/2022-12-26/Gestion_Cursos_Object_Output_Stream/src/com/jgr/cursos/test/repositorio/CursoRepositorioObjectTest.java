@@ -7,6 +7,7 @@ import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -38,7 +39,8 @@ class CursoRepositorioObjectTest {
 		cursoRepositorio = new CursoRepositorioObject();		
 		cursosLista = new ArrayList<>();
 		curso1 = new Curso("NombreCurso1", "CategoriaCurso", 1, 2);
-		curso2 = new Curso("NombreCurso2", "CategoriaCurso", 1, 2);
+		curso2 = new Curso("NombreCurso2", "CategoriaCurso", 3, 4);
+		
 	}
 
 	/**
@@ -58,7 +60,8 @@ class CursoRepositorioObjectTest {
 		cursoRepositorio.crearFichero();
 		Path ruta = Path.of(cursoRepositorio.getNomFichero());
 		Files fichero = null;
-		assertTrue(fichero.exists(ruta, LinkOption.NOFOLLOW_LINKS),()->"El fichero NO existe");
+		assertTrue(fichero.exists(ruta,
+				LinkOption.NOFOLLOW_LINKS),()->"El fichero NO existe");
 		
 	}
 
@@ -87,41 +90,52 @@ class CursoRepositorioObjectTest {
 	 */
 	@Test
 	void testListarCursos() {
-		fail("Not yet implemented");
+		cursosLista= cursoRepositorio.listarCursos();		
+		cursoRepositorio.escribirCurso(curso1);
+		cursoRepositorio.escribirCurso(curso2);
+		cursosLista.add(curso1);
+		cursosLista.add(curso2);
+		int contadorDespues= cursoRepositorio.listarCursos().size();
+		assertEquals(cursosLista,cursoRepositorio.listarCursos(),()->"no se han añadido 2 registros");
+		
+		
 	}
 
 	/**
 	 * Test escribir curso.
+	 * añadimos dos cursos, en la lista que recibimos despues tiene que haber dos registros mas que antes
 	 */
 	@Test
 	void testEscribirCurso() {
+		
+		int contadorAntes= cursoRepositorio.listarCursos().size();		
 		cursoRepositorio.escribirCurso(curso1);
 		cursoRepositorio.escribirCurso(curso2);
+		int contadorDespues= cursoRepositorio.listarCursos().size();
+		assertEquals(contadorAntes+2,contadorDespues,()->"no se han añadido 2 registros");
+		
 
-	}
-
-	/**
-	 * Test escribir curso primera vez.
-	 */
-	@Test
-	void testEscribirCursoPrimeraVez() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test escribir curso resto.
-	 */
-	@Test
-	void testEscribirCursoResto() {
-		fail("Not yet implemented");
 	}
 
 	/**
 	 * Test buscar curso por nombre.
 	 */
 	@Test
-	void testBuscarCursoPorNombre() {
-		fail("Not yet implemented");
+	void testBuscarCursoPorNombre() {		
+		Curso curso3= new Curso();
+		curso3.setNombre("NombredelCurso3");
+		curso3.setCategoria("CategoriaDelCurso3");
+		curso3.setDuracion(44);
+		curso3.setPrecio(55);
+		cursoRepositorio.escribirCurso(curso1);
+		cursoRepositorio.escribirCurso(curso2);
+		cursoRepositorio.escribirCurso(curso3);
+		cursosLista=cursoRepositorio.listarCursos();
+		assertTrue(cursoRepositorio.listarCursos().contains(curso3),()->"No aparece el curso con el contains");
+		assertTrue(curso3.getNombre().equals
+				(cursoRepositorio.buscarCursoPorNombre(curso3.getNombre()).get().getNombre()),
+				()->"No coincide el nombre del curso 3");
+		
 	}
 
 	/**
@@ -129,7 +143,15 @@ class CursoRepositorioObjectTest {
 	 */
 	@Test
 	void testBuscarCursoPorCategoria() {
-		fail("Not yet implemented");
+		int contaAntes =cursoRepositorio.buscarCursosPorCategoria(curso2.getCategoria()).size();
+		cursoRepositorio.escribirCurso(curso1);
+		cursoRepositorio.escribirCurso(curso2);
+		
+		
+		assertEquals(contaAntes+2,
+				(cursoRepositorio.buscarCursosPorCategoria(curso2.getCategoria()).size()),
+				()->"No coinciden los elementos con categoria +".concat(curso2.getCategoria()));
+		
 	}
 
 }

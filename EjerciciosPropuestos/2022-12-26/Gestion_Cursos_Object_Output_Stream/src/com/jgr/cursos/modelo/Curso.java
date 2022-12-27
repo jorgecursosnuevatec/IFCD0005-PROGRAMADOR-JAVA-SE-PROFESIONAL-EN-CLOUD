@@ -171,6 +171,12 @@ public class Curso   implements Serializable{
 				&& Double.doubleToLongBits(precio) == Double.doubleToLongBits(other.precio);
 	}
 
+	@Override
+	public String toString() {
+		return "Curso [idCurso=" + this.idCurso + ", nombre=" + this.nombre + ", categoria=" + this.categoria
+				+ ", precio=" + this.precio + ", duracion=" + this.duracion + "]";
+	}
+
 	
 	
 	

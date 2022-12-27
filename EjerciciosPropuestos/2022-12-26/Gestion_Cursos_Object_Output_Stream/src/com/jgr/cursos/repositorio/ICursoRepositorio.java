@@ -22,7 +22,7 @@ public interface ICursoRepositorio {
 
     public Optional<Curso> buscarCursoPorNombre( String nombreCurso);
     
-    public List<Curso> buscarCursoPorCategoria( String categoria);   
+    public List<Curso> buscarCursosPorCategoria( String categoria);   
     
   
 
