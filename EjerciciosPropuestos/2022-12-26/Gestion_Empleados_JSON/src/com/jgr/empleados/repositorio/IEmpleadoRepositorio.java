@@ -1,16 +1,13 @@
-package com.jgr.cursos.repositorio;
+package com.jgr.empleados.repositorio;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.jgr.cursos.modelo.Curso;
+import com.jgr.empleados.modelo.Empleado;
 
 
-/**
- * The Interface ICursoRepositorio.
- */
-public interface ICursoRepositorio {
-	
+
+public interface IEmpleadoRepositorio {
 	
 	/**
 	 * Existe fichero.
@@ -37,34 +34,34 @@ public interface ICursoRepositorio {
     public String getNomFichero();
 	
     /**
-     * Listar cursos.
+     * Listar empleados.
      *
      * @return the list
      */
-    public List<Curso> listarCursos();
+    public List<Empleado> listarEmpleados();
 
     /**
-     * Escribir curso.
+     * Escribir empleado.
      *
-     * @param curso the curso
+     * @param empleado the empleado
      */
-    public void escribirCurso(Curso curso);
+    public void escribirEmpleado(Empleado empleado);
 
     /**
-     * Buscar curso por nombre.
+     * Buscar empleado por nombre.
      *
-     * @param nombreCurso the nombre curso
+     * @param nombreEmpleado the nombre empleado
      * @return the optional
      */
-    public Optional<Curso> buscarCursoPorNombre( String nombreCurso);
+    public Optional<Empleado> buscarEmpleadoPorNombre( String nombreEmpleado);
     
     /**
-     * Buscar cursos por categoria.
+     * Buscar empleados por categoria.
      *
      * @param categoria the categoria
      * @return the list
      */
-    public List<Curso> buscarCursosPorCategoria( String categoria);
+    public List<Empleado> buscarEmpleadosPorDepartamento( String departamento);
     
     /**
      * Descontar porcentaje duracion.
@@ -73,13 +70,10 @@ public interface ICursoRepositorio {
      * @param duracion 
      * @return the list
      */
-    public List<Curso> descontarPorcentajeDuracion(double duracion);   
+    public List<Empleado> buscarEmpleadoMasAntiguo();   
     
   
 
 
 
-	
-    
 }
-	

@@ -1,13 +1,15 @@
 package com.jgr.cursos.test.repositorio;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -87,6 +89,7 @@ class CursoRepositorioObjectTest {
 
 	/**
 	 * Test listar cursos.
+	 * comparo las listas despues de añadir elementos para ver si son iguales
 	 */
 	@Test
 	void testListarCursos() {
@@ -95,7 +98,7 @@ class CursoRepositorioObjectTest {
 		cursoRepositorio.escribirCurso(curso2);
 		cursosLista.add(curso1);
 		cursosLista.add(curso2);
-		int contadorDespues= cursoRepositorio.listarCursos().size();
+
 		assertEquals(cursosLista,cursoRepositorio.listarCursos(),()->"no se han añadido 2 registros");
 		
 		

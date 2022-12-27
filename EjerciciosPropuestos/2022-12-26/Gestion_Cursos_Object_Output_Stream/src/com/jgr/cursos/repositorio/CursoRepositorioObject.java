@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.jgr.cursos.auxiliar.MiObjectOutputStream;
 import com.jgr.cursos.modelo.Curso;
@@ -241,6 +242,27 @@ try(ObjectInputStream ois = new ObjectInputStream(
 				.stream()
 				.filter(c->c.getCategoria().equalsIgnoreCase(nombreCategoria))
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<Curso> descontarPorcentajeDuracion(double duracion) {
+		
+		return cursos.stream()
+		.peek(c->System.out.println("\ncurso antes->"+c.getNombre() +"duracion->"+c.getDuracion()))
+		.flatMap(curso->	{
+			if(curso.getDuracion()>duracion) {
+//				double calculo = (curso.getDuracion()*porcentaje)/100;
+				
+				curso.setDuracion(curso.getDuracion()-(curso.getDuracion()*0.10));
+			}
+			return Stream.of(curso);
+			
+		})
+		.peek(c->System.out.println("curso despues->"+c.getNombre() +"duracion->"+c.getDuracion()))
+		.collect(Collectors.toList())
+		;
+
+		
 	}
 
 
