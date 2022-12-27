@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-12-27 EJERCICIO CURSOS SERIALIZABLE OK PTE REDUCIR DURACION CURSOS"
+message="$(date)2022-12-27 terminar de leer el JSON"
 fi
 
 start=`date +%s`

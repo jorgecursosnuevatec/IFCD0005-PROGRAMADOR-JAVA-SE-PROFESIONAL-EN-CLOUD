@@ -8,6 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +29,7 @@ public class CursoRepositorioObject implements ICursoRepositorio {
 	private List<Curso> cursos;	
 	
 	/** The fichero cursos. */
-	private ObjectOutputStream ficheroCursos;
+//	private ObjectOutputStream ficheroCursos;
 	
 	/** The nom fichero. */
 	private final String nomFichero="nombreFichero.txt";
@@ -57,6 +59,8 @@ public class CursoRepositorioObject implements ICursoRepositorio {
 	 * Crear fichero.
 	 */
 	public void crearFichero() {
+		
+		/*
 		ObjectOutputStream oosRet = null;		
 		try(FileOutputStream fos= new FileOutputStream(nomFichero);
 				ObjectOutputStream oos = new ObjectOutputStream(fos);){			
@@ -69,7 +73,24 @@ public class CursoRepositorioObject implements ICursoRepositorio {
 			
 			e.printStackTrace();
 		}
-		this.ficheroCursos=oosRet;
+		*/
+		
+		Path ruta= Path.of(nomFichero);
+		
+		var archivo = new File(nomFichero);
+		
+		if(!archivo.exists()) {			
+			
+			try {
+				Files.createFile(ruta);
+			} catch (IOException e) {
+				System.out.println("Error al crear fichero");			
+				e.printStackTrace();
+			}
+			
+		}
+		
+//		this.ficheroCursos=oosRet;
 	}
 
 		
@@ -82,6 +103,7 @@ public class CursoRepositorioObject implements ICursoRepositorio {
 	 */
 	@Override
 	public boolean existeFichero(){
+		
 		var archivo = new File(this.nomFichero);
 		return archivo.exists();
 	}
@@ -91,9 +113,14 @@ public class CursoRepositorioObject implements ICursoRepositorio {
 	 */
 	@Override
 	public void borrarFichero() {
-		var archivo = new File(this.nomFichero);		
-			archivo.delete();
-		System.out.println("Se ha borrado el archivo");
+		
+		try {
+			Files.deleteIfExists(Path.of(this.nomFichero));
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
 		
 	}
 

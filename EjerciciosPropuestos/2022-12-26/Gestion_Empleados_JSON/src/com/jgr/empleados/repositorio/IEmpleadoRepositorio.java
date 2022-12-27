@@ -6,7 +6,12 @@ import java.util.Optional;
 import com.jgr.empleados.modelo.Empleado;
 
 
-
+/**
+ * The Interface IEmpleadoRepositorio.
+ * -obtener los datos del empleado mas antiguo
+ * -del que tenga el mayor salario
+ * -empleados de un departamento concreto
+ */
 public interface IEmpleadoRepositorio {
 	
 	/**
@@ -58,7 +63,7 @@ public interface IEmpleadoRepositorio {
     /**
      * Buscar empleados por categoria.
      *
-     * @param categoria the categoria
+     * @param departamento the departamento
      * @return the list
      */
     public List<Empleado> buscarEmpleadosPorDepartamento( String departamento);
@@ -67,7 +72,6 @@ public interface IEmpleadoRepositorio {
      * Descontar porcentaje duracion.
      * si la duracion es mayor se le descuenta un 10% 
      *
-     * @param duracion 
      * @return the list
      */
     public List<Empleado> buscarEmpleadoMasAntiguo();   
