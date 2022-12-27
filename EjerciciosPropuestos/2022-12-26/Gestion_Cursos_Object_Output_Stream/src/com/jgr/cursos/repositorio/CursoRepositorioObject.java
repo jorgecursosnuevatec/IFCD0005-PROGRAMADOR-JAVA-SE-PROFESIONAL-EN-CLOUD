@@ -20,7 +20,7 @@ import com.jgr.cursos.modelo.Curso;
 /**
  * The Class CursoRepositorio.
  */
-public class CursoRepositorio implements ICursoRepositorio {
+public class CursoRepositorioObject implements ICursoRepositorio {
 	
 	/** The cursos. */
 	private List<Curso> cursos;	
@@ -37,7 +37,7 @@ public class CursoRepositorio implements ICursoRepositorio {
 	/**
 	 * Instantiates a new curso repositorio.
 	 */
-	public CursoRepositorio(){		
+	public CursoRepositorioObject(){		
 		
 		if(existeFichero()) {
 			borrarFichero();			
@@ -46,6 +46,10 @@ public class CursoRepositorio implements ICursoRepositorio {
 		crearFichero();
 		this.primeraVez=true;
 		
+	}
+	
+	public String getNomFichero() {
+		return this.nomFichero;
 	}
 	
 	/**
@@ -156,7 +160,16 @@ public class CursoRepositorio implements ICursoRepositorio {
 	 */
 	public void escribirCursoPrimeraVez(Curso curso) {
 		
-		try(ObjectOutputStream oos = this.ficheroCursos;) {
+/*		
+try(ObjectInputStream ois = new ObjectInputStream(
+                new FileInputStream(this.nomFichero))){		
+		
+		*/
+		
+		
+		try(ObjectOutputStream oos = new ObjectOutputStream(
+                new FileOutputStream(this.nomFichero))) {	
+			
 			
 			oos.writeObject(curso);			
 			this.primeraVez=false;
@@ -175,13 +188,19 @@ public class CursoRepositorio implements ICursoRepositorio {
 	 */
 	public void escribirCursoResto(Curso curso) {
 		  
-		  try(MiObjectOutputStream oos = (MiObjectOutputStream) this.ficheroCursos;) {
-			oos.writeUnshared(curso);
+		  try(MiObjectOutputStream oos= new  MiObjectOutputStream ( new ObjectOutputStream(
+	                new FileOutputStream(this.nomFichero)))) {
+	                	oos.writeUnshared(curso);
 			
-		} catch (IOException e) {
-	
-			e.printStackTrace();
-		}
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			};
+			
+		
 	}
 	
 
