@@ -1,19 +1,20 @@
 package com.jgr.empleados.repositorio;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import com.google.gson.Gson;
-import com.jgr.cursos.modelo.Curso;
+import com.google.gson.GsonBuilder;
 import com.jgr.empleados.modelo.Empleado;
 
 
@@ -128,7 +129,8 @@ public class EmpleadoRepositorio implements IEmpleadoRepositorio{
 	 */
 	@Override
 	public void escribirEmpleado(Empleado empleado) {
-		Gson gson = new Gson();
+		//Gson gson = new Gson();
+		Gson gson= new GsonBuilder().setPrettyPrinting().create();
 		String json = gson.toJson(empleado);
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(nomFichero,true))) {
 		    bw.write(json);
@@ -176,4 +178,26 @@ public class EmpleadoRepositorio implements IEmpleadoRepositorio{
 		return null;
 	}
 
+	
+	public Empleado leerEmpleado() {
+		String fichero = "";
+		Gson gson = new Gson();
+		Empleado emp = new Empleado();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(nomFichero))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                fichero += linea;
+                }            
+
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return emp = gson.fromJson(fichero, Empleado.class);
+        
+        
+	}
+	
 }

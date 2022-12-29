@@ -1,5 +1,6 @@
 package com.jgr.pruebas;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -9,6 +10,7 @@ public class Empleado {
 	private Date fechaIngreso;
 	private double salario;
 	private String departamento;
+	
 	public Empleado() {
 		super();
 	}
@@ -25,7 +27,8 @@ public class Empleado {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Date getFechaIngreso() {
+	public Date getFechaIngreso() {		
+		
 		return this.fechaIngreso;
 	}
 	public void setFechaIngreso(Date fechaIngreso) {

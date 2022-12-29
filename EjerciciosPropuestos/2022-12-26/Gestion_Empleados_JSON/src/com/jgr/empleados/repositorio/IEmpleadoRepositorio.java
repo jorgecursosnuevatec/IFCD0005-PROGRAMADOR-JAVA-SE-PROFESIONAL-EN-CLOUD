@@ -1,5 +1,9 @@
 package com.jgr.empleados.repositorio;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,7 +81,9 @@ public interface IEmpleadoRepositorio {
     public List<Empleado> buscarEmpleadoMasAntiguo();   
     
   
-
+    public Empleado leerEmpleado();
+    
+    
 
 
 }
