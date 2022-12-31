@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-12-27 terminar de leer el JSON"
+message="$(date)2022-12-29 EMPEZAR CON ANOTACIONES 2"
 fi
 
 start=`date +%s`
