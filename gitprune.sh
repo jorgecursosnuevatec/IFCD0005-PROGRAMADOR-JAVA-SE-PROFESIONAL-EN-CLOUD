@@ -14,7 +14,7 @@ PushLog="/dev/null"
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2022-12-29 EMPEZAR CON ANOTACIONES 2"
+message="$(date)2023-01-02 APUNTES DE CLASE"
 fi
 
 start=`date +%s`
