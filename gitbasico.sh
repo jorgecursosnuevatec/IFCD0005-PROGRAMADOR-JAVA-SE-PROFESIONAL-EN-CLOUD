@@ -21,7 +21,7 @@ inicio=`date +%s`
 # Mensaje
 message=$@
 if [ -z "$message" ]; then
-message="$(date)2023-01-02 primera subida sin cambios"
+message="$(date)2023-01-03 PRIMERA SUBIDA SIN CAMBIOS"
 fi
 
 git add .
