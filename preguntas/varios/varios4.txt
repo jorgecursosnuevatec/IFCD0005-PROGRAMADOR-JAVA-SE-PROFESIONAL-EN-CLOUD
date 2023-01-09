@@ -1,0 +1,17 @@
+public class Test{
+	static int a=1; 
+	public void static main(String [] args){
+		int b=6;
+		while(a++){
+			b--;
+		}
+		System.out.println("a="+a+" b="+b);
+	}
+}
+
+a)a=6 b=0
+b)a=7 b=1
+c)a=6 b=1
+d)a=7 b=0
+*e)error de compilación
+f)excepción

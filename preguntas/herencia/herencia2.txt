@@ -1,0 +1,21 @@
+class A{
+	public A(){
+		print("constructor A");
+	}
+}
+class B extends A(){
+	public B(){
+		print("constructor B");
+	}
+
+}
+
+//main
+B b=new B();
+
+
+a) constructor A
+b) constructor B
+*c) constructor A
+   constructor B
+d) error de compilación

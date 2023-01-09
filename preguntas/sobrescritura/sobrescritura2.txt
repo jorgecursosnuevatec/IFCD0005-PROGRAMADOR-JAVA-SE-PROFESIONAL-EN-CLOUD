@@ -1,0 +1,18 @@
+class C1{
+	void m(){
+		print("m de C1");
+	}
+}
+class C2 extends C1{
+	public void m(int a){  //linea 1
+		print("m de C2");
+	}
+}
+
+C2 c=new C2();
+c.m();  //linea 2
+
+*1)m de C1
+2)m de C2
+3)error de compilación en linea 1
+4)error de compilación en linea 2

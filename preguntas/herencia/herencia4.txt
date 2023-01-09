@@ -1,0 +1,15 @@
+class A{
+}
+class B extends A(){
+	public B(){
+		print("constructor B");
+	}
+
+}
+
+//main
+B b=new B();
+1) constructor A
+*2) constructor B
+3) no muestra nada
+4) error de compilación

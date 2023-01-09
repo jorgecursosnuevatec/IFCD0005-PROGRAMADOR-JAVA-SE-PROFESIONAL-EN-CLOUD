@@ -1,0 +1,28 @@
+class A{
+	public void A(){
+		print("constructor A");
+	}
+}
+class B extends A(){
+	public B(){
+		print("constructor B");
+	}
+
+}
+class C extends B{
+	public C(){
+		print("constructor C");
+	}
+
+}
+//main
+C c=new C();
+1) constructor A
+2) constructor B
+3) constructor C
+*4) constructor B
+   constructor C
+5) constructor A
+   constructor B
+   constructor C
+6) error de compilación

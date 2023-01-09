@@ -1,0 +1,19 @@
+class A{
+	public A(int n){
+		print("constructor A");
+	}
+}
+class B extends A(){
+	public B(){super();
+		print("constructor B");
+	}
+
+}
+
+//main
+B b=new B();
+1) constructor A
+2) constructor B
+3) constructor A
+   constructor B
+*4) error de compilación
