@@ -8,23 +8,24 @@ import java.io.IOException;
 public class TestLectura {
 
 	public static void main(String[] args) {
-		String ruta="c:\\ficheros\\productos.txt";
-		/*FileReader fr=null;
-		BufferedReader bf=null;
+		// TODO Auto-generated method stub
+		String dir ="C:\\Users\\manana\\principal\\productos.txt";
+		/*FileReader fr= null;
+		BufferedReader bf = null;
 		try {
-			fr=new FileReader(ruta);
-			bf=new BufferedReader(fr);
-			System.out.println(bf.readLine()); //primera línea
-			System.out.println(bf.readLine()); //segunda línea
-			String s;
-			while((s=bf.readLine())!=null) {
-				System.out.println(s);
+			fr = new FileReader(dir);
+			bf= new BufferedReader(fr);
+		//	System.out.println("1-->"+bf.readLine());
+		//	System.out.println("2-->"+bf.readLine());
+			String s;                                         //  con esto
+			while ((s= bf.readLine())!=null) {			      //  se lee todo 		
+				System.out.println(s);					      //  un fichero
 			}
 		}
-		catch(FileNotFoundException ex) {
+		catch (FileNotFoundException ex) {
 			ex.printStackTrace();
 		}
-		catch(IOException ex) {
+		catch (IOException ex) {
 			ex.printStackTrace();
 		}
 		finally {
@@ -45,19 +46,20 @@ public class TestLectura {
 				}
 			}
 		}*/
-		try(FileReader fr=new FileReader(ruta);
-				BufferedReader bf=new BufferedReader(fr);){
-			String s;
-			while((s=bf.readLine())!=null) {
-				System.out.println(s);
+		try (FileReader    fr =new FileReader(dir);
+			BufferedReader bf= new BufferedReader(fr);){
+			
+			String s;                                         //  con esto
+			while ((s= bf.readLine())!=null) {			      //  se lee todo 		
+				System.out.println(s);					      //  un fichero
 			}
 		}
-		catch(FileNotFoundException ex) {
+		catch (FileNotFoundException ex) {
 			ex.printStackTrace();
 		}
-		catch(IOException ex) {
+		catch (IOException ex) {
 			ex.printStackTrace();
 		}
-	}
 
+	}
 }

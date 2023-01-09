@@ -6,33 +6,35 @@ import java.io.PrintStream;
 public class TestEscritura {
 
 	public static void main(String[] args) {
-		String dir="c:\\ficheros\\dias.txt";
-		/*PrintStream out=null;
+		// TODO Auto-generated method stub
+		String dir ="C:\\Users\\manana\\principal\\dias.txt";
+		/*PrintStream out= null;
 		try {
-			out=new PrintStream(dir);
-			out.println("jueves");
-			out.println("viernes");
-			out.println("sábado");
-			return;
+			out = new PrintStream(dir);  // abrimos un canal de comunicacion con un fichero 
+			out.println("Lunes");
+			out.println("Martes");
+			out.println("Miercoles");
+			
 		}
-		catch(FileNotFoundException ex) {
+		catch (FileNotFoundException ex) {
 			ex.printStackTrace();
+			
 		}
 		finally {
 			if(out!=null) {
-				out.close(); //cierra el canal
+				out.close();  //  cierra el canal de escritura en el fichero
 			}
 		}*/
-		try(PrintStream out=new PrintStream(dir);){
-			out.println("jueves");
-			out.println("viernes");
-			out.println("sábado");
-			return;
+		
+		try (PrintStream out= new PrintStream(dir);) {   // se  crea aqui el canal de comunicacion y ya se cerrará solo
+			out.println("Lunes");
+			out.println("Martes");
+			out.println("Miercoles");
 		}
-		catch(FileNotFoundException ex) {
+		catch (FileNotFoundException ex) {
 			ex.printStackTrace();
 		}
-		//80000 instrucciones más 
+
 	}
 
 }

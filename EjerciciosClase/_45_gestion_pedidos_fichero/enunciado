@@ -1,0 +1,8 @@
+ENUNCIADO: Programa para gestión de pedidos
+
+1.- Nuevo pedido
+2.- Pedido más reciente
+3.- Datos de todos los pedidos
+4.- Salir
+
+Un pedido se caracteriza por: producto, fecha de pedido, total

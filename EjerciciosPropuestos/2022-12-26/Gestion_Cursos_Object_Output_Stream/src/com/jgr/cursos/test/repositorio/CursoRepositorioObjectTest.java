@@ -98,7 +98,6 @@ class CursoRepositorioObjectTest {
 		cursoRepositorio.escribirCurso(curso2);
 		cursosLista.add(curso1);
 		cursosLista.add(curso2);
-
 		assertEquals(cursosLista,cursoRepositorio.listarCursos(),()->"no se han añadido 2 registros");
 		
 		
