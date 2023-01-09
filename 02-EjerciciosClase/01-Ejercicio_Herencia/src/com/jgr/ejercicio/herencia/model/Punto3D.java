@@ -21,6 +21,17 @@ public class Punto3D extends Punto {
 	/**
 	 * Instantiates a new punto 3 D.
 	 *
+	 * @param p the p
+	 * @param coorz the coorz
+	 */
+	public Punto3D(Punto p, int coorz) {
+		super(p.getX(),p.getY());
+		this.z= coorz;
+	}
+	
+	/**
+	 * Instantiates a new punto 3 D.
+	 *
 	 * @param z the z
 	 */
 	public Punto3D(int z) {
@@ -116,12 +127,11 @@ public class Punto3D extends Punto {
 	 * Dibujar.
 	 * */
 	
+	@Override
 	public void dibujar() {
 		System.out.print("\nCoordenadas->"+this.getX()+","+this.getY()+ ","+this.getZ());
 	}
 	 
-	
-	
 	
 	/**
 	 * Mover.
