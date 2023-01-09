@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.jgr.cursos.modelo.Curso;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * The Interface ICursoRepositorio.
  */
@@ -56,7 +57,7 @@ public interface ICursoRepositorio {
      * @param nombreCurso the nombre curso
      * @return the optional
      */
-    public Optional<Curso> buscarCursoPorNombre( String nombreCurso);
+    public Optional<Curso> buscarCursoPorNombre(String nombreCurso);
     
     /**
      * Buscar cursos por categoria.
@@ -70,13 +71,19 @@ public interface ICursoRepositorio {
      * Descontar porcentaje duracion.
      * si la duracion es mayor se le descuenta un 10% 
      *
-     * @param duracion 
+     * @param duracion the duracion
      * @return the list
      */
     public List<Curso> descontarPorcentajeDuracion(double duracion);   
     
   
-
+    /**
+     * añadimos cursos.
+     *
+     * @param cursos the cursos
+     * @return the list
+     */
+    public List<Curso> setCursos(List<Curso> cursos);	
 
 
 	

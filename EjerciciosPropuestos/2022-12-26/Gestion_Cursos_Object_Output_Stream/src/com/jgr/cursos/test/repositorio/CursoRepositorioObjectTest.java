@@ -11,7 +11,10 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import com.jgr.cursos.modelo.Curso;
@@ -21,7 +24,13 @@ import com.jgr.cursos.repositorio.ICursoRepositorio;
 
 /**
  * The Class CursoRepositorioObjectTest.
+ * 
+ * OJO QUE DA ERROR java.io.StreamCorruptedException: invalid stream header: 7372001B
+ * CUANDO SE EJECUTA EL METODO DESCONTAR PORCENTAJE
+ *
  */
+
+
 class CursoRepositorioObjectTest {
 	
 	/** The curso repositorio. */
@@ -37,11 +46,15 @@ class CursoRepositorioObjectTest {
 	 * @throws Exception the exception
 	 */
 	@BeforeAll
+	@DisplayName("setUpBeforeClass")
 	static void setUpBeforeClass() throws Exception {
 		cursoRepositorio = new CursoRepositorioObject();		
 		cursosLista = new ArrayList<>();
-		curso1 = new Curso("NombreCurso1", "CategoriaCurso", 1, 2);
+		curso1 = new Curso("NombreCurso1", "CategoriaCurso", 1, 100);
 		curso2 = new Curso("NombreCurso2", "CategoriaCurso", 3, 4);
+	
+		cursoRepositorio.crearFichero();
+		
 		
 	}
 
@@ -49,8 +62,10 @@ class CursoRepositorioObjectTest {
 	 * Test curso repositorio object.
 	 */
 	@Test
+	@DisplayName("testCursoRepositorioObject")
 	void testCursoRepositorioObject() {
 		assertNotNull(cursoRepositorio,()->"El repositorio ES nulo" );
+	
 	}
 
 	/**
@@ -58,6 +73,7 @@ class CursoRepositorioObjectTest {
 	 * creo el fichero y luego verifico que efectivamente exista
 	 */
 	@Test
+	@DisplayName("testCrearFichero()")
 	void testCrearFichero() {
 		cursoRepositorio.crearFichero();
 		Path ruta = Path.of(cursoRepositorio.getNomFichero());
@@ -71,6 +87,7 @@ class CursoRepositorioObjectTest {
 	 * Test existe fichero.
 	 */
 	@Test
+	@DisplayName("testExisteFichero()")
 	void testExisteFichero() {
 		assertTrue(cursoRepositorio.existeFichero(),()->"El fichero NO existe");
 		
@@ -80,9 +97,20 @@ class CursoRepositorioObjectTest {
 	 * Test borrar fichero.
 	 */
 	@Test
+	@Order(1)
+	@DisplayName("testBorrarFichero()")
 	void testBorrarFichero() {
+		
+		if (cursoRepositorio.existeFichero()) {
 		cursoRepositorio.borrarFichero();
 		assertFalse(cursoRepositorio.existeFichero(),()->"No se ha borrado el fichero");
+		}
+		else {
+			cursoRepositorio.crearFichero();
+			cursoRepositorio.borrarFichero();
+			assertFalse(cursoRepositorio.existeFichero(),()->"No se ha borrado el fichero");
+			
+		}
 		//lo vuelvo a crear para que no falle el resto de procesos
 		cursoRepositorio.crearFichero();
 	}
@@ -93,6 +121,7 @@ class CursoRepositorioObjectTest {
 	 */
 	@Test
 	void testListarCursos() {
+		
 		cursosLista= cursoRepositorio.listarCursos();		
 		cursoRepositorio.escribirCurso(curso1);
 		cursoRepositorio.escribirCurso(curso2);
@@ -108,6 +137,7 @@ class CursoRepositorioObjectTest {
 	 * añadimos dos cursos, en la lista que recibimos despues tiene que haber dos registros mas que antes
 	 */
 	@Test
+	@DisplayName("testEscribirCurso()")
 	void testEscribirCurso() {
 		
 		int contadorAntes= cursoRepositorio.listarCursos().size();		
@@ -123,6 +153,7 @@ class CursoRepositorioObjectTest {
 	 * Test buscar curso por nombre.
 	 */
 	@Test
+	@DisplayName("testBuscarCursoPorNombre()")
 	void testBuscarCursoPorNombre() {		
 		Curso curso3= new Curso();
 		curso3.setNombre("NombredelCurso3");
@@ -144,6 +175,7 @@ class CursoRepositorioObjectTest {
 	 * Test buscar curso por categoria.
 	 */
 	@Test
+	@DisplayName("testBuscarCursoPorCategoria()")
 	void testBuscarCursoPorCategoria() {
 		int contaAntes =cursoRepositorio.buscarCursosPorCategoria(curso2.getCategoria()).size();
 		cursoRepositorio.escribirCurso(curso1);
@@ -153,6 +185,28 @@ class CursoRepositorioObjectTest {
 		assertEquals(contaAntes+2,
 				(cursoRepositorio.buscarCursosPorCategoria(curso2.getCategoria()).size()),
 				()->"No coinciden los elementos con categoria +".concat(curso2.getCategoria()));
+		
+	}
+	/**
+	* Test descontarPorcentajeDuracion.
+	*/
+	@Test
+	@DisplayName("testdescontarPorcentajeDuracion()")
+	void testdescontarPorcentajeDuracion() {		
+				
+		
+		Curso curso4= new Curso();
+		curso4.setNombre("NombredelCurso4");
+		curso4.setCategoria("CategoriaDelCurso4");
+		curso4.setDuracion(100);
+		curso4.setPrecio(55);
+		
+		cursosLista=cursoRepositorio.listarCursos();
+		cursosLista.forEach(System.out::println);
+		
+		cursoRepositorio.escribirCurso(new Curso("nombre", "categoria", 100.00, 200.00));
+		System.out.println("descontarPorcentaje->"+cursoRepositorio.listarCursos());
+		System.out.println("descontarPorcentaje->"+cursoRepositorio.descontarPorcentajeDuracion(1.0));
 		
 	}
 

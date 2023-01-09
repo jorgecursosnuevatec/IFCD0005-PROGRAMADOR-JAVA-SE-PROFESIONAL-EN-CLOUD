@@ -50,6 +50,12 @@ public class CursoRepositorioObject implements ICursoRepositorio {
 		this.primeraVez=true;
 		
 	}
+	public List<Curso> setCursos(List<Curso> cursos){		
+		
+		this.cursos.forEach(c->cursos.add(c));
+		return this.cursos;
+		
+	}
 	
 	public String getNomFichero() {
 		return this.nomFichero;
@@ -274,7 +280,10 @@ try(ObjectInputStream ois = new ObjectInputStream(
 	@Override
 	public List<Curso> descontarPorcentajeDuracion(double duracion) {
 		
-		return cursos.stream()
+		List<Curso> cursitos = cursos;
+		cursos.clear();
+		
+		 cursitos.stream()
 		.peek(c->System.out.println("\ncurso antes->"+c.getNombre() +"duracion->"+c.getDuracion()))
 		.flatMap(curso->	{
 			if(curso.getDuracion()>duracion) {
@@ -288,6 +297,9 @@ try(ObjectInputStream ois = new ObjectInputStream(
 		.peek(c->System.out.println("curso despues->"+c.getNombre() +"duracion->"+c.getDuracion()))
 		.collect(Collectors.toList())
 		;
+		 cursos= cursitos;
+		 return cursos;
+			 
 
 		
 	}

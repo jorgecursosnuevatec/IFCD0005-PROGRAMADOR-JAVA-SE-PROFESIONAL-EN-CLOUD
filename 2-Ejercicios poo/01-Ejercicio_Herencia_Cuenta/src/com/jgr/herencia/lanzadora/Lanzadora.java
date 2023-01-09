@@ -1,6 +1,6 @@
-package com.jgr.lanzadora;
+package com.jgr.herencia.lanzadora;
 
-import com.jgr.modelo.CuentaLimite;
+import com.jgr.herencia.modelo.CuentaLimite;
 
 /**
  * The Class Lanzadora.
@@ -21,12 +21,7 @@ public class Lanzadora {
 	
 	public static void main(String[] args) {
 		
-		CuentaLimite cl = new CuentaLimite(2000);
-		
-		System.out.println("saldo inicial->"+cl.getSaldo());
-		System.out.println("limite inicial->"+cl.getLimite());
-		System.out.println("ajustar limite->"+cl.ajustarLimite());
-		
+	
 		
 		
 	
