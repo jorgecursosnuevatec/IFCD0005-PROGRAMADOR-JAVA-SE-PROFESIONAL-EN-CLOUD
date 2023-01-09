@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * The Class Curso.
  */
-public class Curso   implements Serializable{
+public class Curso  implements Serializable{
 	
 	/** The id curso. */
 	private int idCurso;	

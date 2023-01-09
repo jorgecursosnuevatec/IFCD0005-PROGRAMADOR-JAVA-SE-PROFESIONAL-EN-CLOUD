@@ -71,6 +71,18 @@ public class Punto3D extends Punto {
 		this.z = z;
 	}
 
+	
+	/**
+	 * Mover.
+	 *
+	 * @param d the d
+	 */
+	public void mover(int d) {
+		this.setX(this.getX()+d);
+		this.setY(this.getY()+d);
+		this.setZ(this.getZ()+d);
+	}
+	
 
 	/**
 	 * Hash code.
@@ -120,29 +132,23 @@ public class Punto3D extends Punto {
 				+ (super.toString() != null ? "toString()=" + super.toString() + ", " : "")
 				+ (getClass() != null ? "getClass()=" + getClass() : "") + "]";
 	}
-	
-	
-	
+
 	/**
 	 * Dibujar.
-	 * */
-	
+	 */
 	@Override
 	public void dibujar() {
-		System.out.print("\nCoordenadas->"+this.getX()+","+this.getY()+ ","+this.getZ());
+		super.dibujar();
+		
+		System.out.println(" valor z->"+this.getZ());
+		//super.dibujar()+this.z;
 	}
-	 
 	
-	/**
-	 * Mover.
-	 *
-	 * @param d the d
-	 */
-	public void mover(int d) {
-		this.setX(this.getX()+d);
-		this.setY(this.getY()+d);
-		this.setZ(this.getZ()+d);
-	}
+	
+	
+	
+	
+	
 	
 
 }

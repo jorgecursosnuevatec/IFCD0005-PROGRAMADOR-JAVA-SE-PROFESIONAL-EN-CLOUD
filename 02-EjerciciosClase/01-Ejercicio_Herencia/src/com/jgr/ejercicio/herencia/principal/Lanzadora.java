@@ -4,12 +4,19 @@ import com.jgr.ejercicio.herencia.model.Punto;
 import com.jgr.ejercicio.herencia.model.Punto3D;
 
 
+
+// TODO: Auto-generated Javadoc
 /**
  * The Class Lanzadora.
  */
 public class Lanzadora {
 
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		
 		Punto p1= new Punto();
@@ -30,6 +37,9 @@ public class Lanzadora {
 		p1D.mover(10);
 		System.out.println("\np1D despues de mover");
 		p1D.dibujar();
+		
+		
+		
 		
 		
 		
