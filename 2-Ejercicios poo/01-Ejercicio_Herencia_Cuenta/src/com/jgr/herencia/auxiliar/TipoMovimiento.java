@@ -10,4 +10,7 @@ public enum TipoMovimiento {
 	DEBE,
 HABER;
 
+
+	
+	
 }
