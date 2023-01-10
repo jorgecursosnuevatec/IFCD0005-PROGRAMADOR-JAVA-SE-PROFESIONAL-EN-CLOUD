@@ -23,14 +23,14 @@ public class ListaNumeros extends ArrayList<Integer> {
 	@Override
 	public boolean add(Integer e) {
 		
-		boolean existe=this.stream().findAny().equals(e); 
-		
-		if(!existe) {
-			this.add(e);
+		if(!contains(e)) {
+			return super.add(e);
 		}
-		
-		return existe;
+		return false;
 	}
+	
+	
+	
 	
 	
 	

@@ -1,5 +1,6 @@
 package com.jgr.hereda.lista.principal;
 
+import com.jgr.hereda.lista.ListaNumeros;
 
 /**
  * The Class Lanzadora.
@@ -17,7 +18,10 @@ public class Lanzadora {
 
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		ListaNumeros listaNumeros = new ListaNumeros();
+		
+		listaNumeros.add(9);
+		listaNumeros.add(9);
 
 	}
 
