@@ -1,26 +1,38 @@
-package com.jgr.hereda.test.lista;
+package com.jgr.hereda.test.modelo;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.jgr.hereda.lista.ListaNumeros;
+import com.jgr.hereda.modelo.ListaNumerosInteger;
 
-class ListaNumerosTest {
+
+/**
+ * The Class ListaNumerosIntegerTest.
+ */
+class ListaNumerosIntegerTest {
 
 	
-	static ListaNumeros listaNumeros;
+	/** The lista numeros. */
+	static ListaNumerosInteger listaNumeros;
+	
+	/** The Constant limite. */
 	final static int limite = 3;
+	
+	/** The acumulador. */
 	static int acumulador=0;
 	
+	/**
+	 * Sets the up before each.
+	 *
+	 * @throws Exception the exception
+	 */
 	@BeforeEach
-	 void setUpBeforeClass() throws Exception {
-		listaNumeros= new ListaNumeros();
+	 void setUpBeforeEach() throws Exception {
+		listaNumeros= new ListaNumerosInteger();
 		acumulador=0;
 		for (int i=0;i<limite;i++) {
 			listaNumeros.add(i);
@@ -29,6 +41,9 @@ class ListaNumerosTest {
 		
 	}
 
+	/**
+	 * Test devuelve first.
+	 */
 	@Test
 	void testDevuelveFirst() {
 		
@@ -37,6 +52,9 @@ class ListaNumerosTest {
 		
 	}
 
+	/**
+	 * Test devuelve last.
+	 */
 	@Test
 	void testDevuelveLast() {
 		
@@ -44,12 +62,18 @@ class ListaNumerosTest {
 		
 	}
 
+	/**
+	 * Test devuelve suma.
+	 */
 	@Test
 	void testDevuelveSuma() {
 		assertEquals(acumulador,listaNumeros.devuelveSuma(),()->"No coincide la suma");
 		
 	}
 
+	/**
+	 * Test add integer.
+	 */
 	@Test
 	void testAddInteger() {
 		assertTrue(listaNumeros.add(9),()->"No deja añadir 9 y deberia");

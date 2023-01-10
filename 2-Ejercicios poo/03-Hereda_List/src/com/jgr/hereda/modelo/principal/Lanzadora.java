@@ -1,11 +1,11 @@
-package com.jgr.hereda.lista.principal;
+package com.jgr.hereda.modelo.principal;
 
-import com.jgr.hereda.lista.ListaNumeros;
+import com.jgr.hereda.modelo.ListaNumerosInteger;
 
 /**
  * The Class Lanzadora.
  * 
- * ListaNumeros hereda de ArrayList<Integer>
+ * ListaNumerosInteger hereda de ArrayList<Integer>
  * 
  * Añadira
  * first()->devuelve el primer numero
@@ -18,7 +18,7 @@ public class Lanzadora {
 
 	
 	public static void main(String[] args) {
-		ListaNumeros listaNumeros = new ListaNumeros();
+		ListaNumerosInteger listaNumeros = new ListaNumerosInteger();
 		
 		listaNumeros.add(9);
 		listaNumeros.add(9);
