@@ -3,6 +3,7 @@
  */
 package com.jgr.herencia.test.modelo;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -22,9 +23,7 @@ import com.jgr.herencia.modelo.Movimiento;
 class CuentaMovimientoTest {
 	
 	private static CuentaMovimiento c1;
-	private static Movimiento mvto;
-	private static List<Movimiento> movimientos;
-	private static final int limMvtos =3;
+	
 	
 
 	/**
@@ -33,31 +32,13 @@ class CuentaMovimientoTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		
-		movimientos = new ArrayList<>();
+		
 		c1 = new CuentaMovimiento(200);
 		
-		for (int i=0;i<limMvtos;i++) {
-			mvto = new Movimiento();
-			
-			if (i%2==0) {
-				mvto.setTipo(TipoMovimiento.HABER);
-				mvto.setImporte(i);
-				c1.ingresar(i);
-				
-			}else {
-				mvto.setTipo(TipoMovimiento.DEBE);
-				mvto.setImporte(i);
-				c1.extraer(i);
-			}
-			movimientos.add(mvto);
-			c1.addMovimientoCuenta(mvto);
-			
-		}
+	
 	}
 
-	/**
-	 * Test method for {@link com.jgr.herencia.modelo.CuentaMovimiento#CuentaMovimiento()}.
-	 */
+	
 	@Test
 	void testCuentaMovimiento() {
 		
@@ -67,72 +48,98 @@ class CuentaMovimientoTest {
 		
 	}
 
-	/**
-	 * Test method for {@link com.jgr.herencia.modelo.CuentaMovimiento#CuentaMovimiento(double)}.
-	 */
+	
 	@Test
 	void testCuentaMovimientoDouble() {
 		CuentaMovimiento c2 = new CuentaMovimiento(200);
 		assertNotNull(c2,()->"Cuenta creada en testCuentaMovimientoDouble es nula");
 	}
 
-	/**
-	 * Test method for {@link com.jgr.herencia.modelo.CuentaMovimiento#getMovimientosCuenta()}.
-	 */
+	
 	@Test
 	void testGetMovimientosCuenta() {
 		
-		assertEquals(limMvtos,c1.getMovimientosCuenta().size(),()->"No se han cargado todos los movimientos");
+		CuentaMovimiento cm2= new CuentaMovimiento(200,100);		
+		cm2.extraer(200);
+		cm2.ingresar(200);		
+		assertEquals(2,cm2.getMovimientosCuenta().size(),()->"No se han cargado todos los movimientos");		
+			
 			
 		
 	}
 
-	/**
-	 * Test method for {@link com.jgr.herencia.modelo.CuentaMovimiento#setMovimientosCuenta(java.util.List)}.
-	 */
+	
 	@Test
-	void testSetMovimientosCuenta() {
+	void testExtraer() {
 		
-		CuentaMovimiento c2 = new CuentaMovimiento(200);
-		c2.setMovimientosCuenta(movimientos);		
-		assertEquals(limMvtos,c2.getMovimientosCuenta().size(),()->"No se han cargado todos los movimientos");
+		CuentaMovimiento c2 = new CuentaMovimiento(200,200);
+		c2.extraer(200);
+		assertEquals(0,c2.getSaldo(),()->"no coincide el saldo");
+				
+		
 	}
 
-	/**
-	 * Test method for {@link com.jgr.herencia.modelo.CuentaMovimiento#addMovimientoCuenta(com.jgr.herencia.modelo.Movimiento)}.
-	 */
+	
 	@Test
-	void testAddMovimientoCuenta() {
-		Movimiento mvtoMetodo= new Movimiento(50,TipoMovimiento.HABER);		
-		CuentaMovimiento c2 = new CuentaMovimiento(200);
-		c2.addMovimientoCuenta(mvtoMetodo);
-		assertEquals(mvtoMetodo,c2.buscaMovimientoCuenta(mvtoMetodo),()->"Movimiento no encontrado");
+	void testIngresar() {
+				
+		CuentaMovimiento c2 = new CuentaMovimiento(200,200);
+		c2.ingresar(1.0);
+		assertEquals(201.0,c2.getSaldo(),()->"No coincide el saldo despues de ingresar");
+		assertEquals(1,c2.getMovimientosCuenta().size(),()->"No se ha guardado el movimiento");
+		assertEquals(1,c2.buscaMovimientoCuentaPorTipo(TipoMovimiento.HABER).size(),()->"No se ha guardado el movimiento");
+		
 	}
 
-	/**
-	 * Test method for {@link com.jgr.herencia.modelo.CuentaMovimiento#buscaMovimientoCuenta(com.jgr.herencia.modelo.Movimiento)}.
-	 */
+	
 	@Test
 	void testBuscaMovimientoCuenta() {
 		
-		Movimiento mvtoMetodo= movimientos.get(0);		
-		CuentaMovimiento c2 = c1;
-		assertEquals(mvtoMetodo,c2.buscaMovimientoCuenta(mvtoMetodo),()->"Movimiento no encontrado");
+		CuentaMovimiento c2 = new CuentaMovimiento(200,200);
+		c2.ingresar(1.0);
+		Movimiento m1 = c2.getMovimientosCuenta().get(0);		
+		assertEquals(m1,
+				c2.getMovimientosCuenta().get(0),()->"No es igual el movimiento recuperado que el guardado");
 		
 
 	}
+	@Test
+	void testbuscaMovimientoCuentaPorTipo() {
+		
+		CuentaMovimiento c2 = new CuentaMovimiento(200,200);
+		c2.ingresar(1.0);		
+		assertEquals(1,c2.buscaMovimientoCuentaPorTipo(TipoMovimiento.HABER).size(),()->"No se ha encontrado el movimiento al haber");
+		Movimiento mov  = c2.getMovimientosCuenta().get(0);
+		assertTrue(mov.equals(c2.buscaMovimientoCuentaPorTipo(TipoMovimiento.HABER).get(0)),()->"No son iguales los movimientos");
+		
+	}
 
-	/**
-	 * Test method for {@link com.jgr.herencia.modelo.CuentaMovimiento#borraMovimientoCuenta(com.jgr.herencia.modelo.Movimiento)}.
-	 */
+	
 	@Test
 	void testBorraMovimientoCuenta() {
 		
-		CuentaMovimiento c2 = c1;
-		Movimiento mvtoMetodo= movimientos.get(0);		
-		assertNotNull(c2.buscaMovimientoCuenta(mvtoMetodo),()->"El movimiento a probar no existe");
-		c2.borraMovimientoCuenta(mvtoMetodo);
-		assertNull(c2.buscaMovimientoCuenta(mvtoMetodo),()->"El movimiento no deberia existir");
+		CuentaMovimiento c2 = new CuentaMovimiento(200);
+		Movimiento mov = new Movimiento(25,TipoMovimiento.DEBE);
+		c2.addMovimientoCuenta(mov);		
+		assertEquals(1,c2.getMovimientosCuenta().size(),()->"Movimiento no guardado");
+		c2.borraMovimientoCuenta(mov);
+		assertNull(c2.buscaMovimientoCuenta(mov),()->"El movimiento no se ha borrado");
+		
+		
+		
+	}
+	@Test
+	void testaddMovimientoCuenta() {
+		CuentaMovimiento c2 = new CuentaMovimiento(200);
+		double saldoAnt = c2.getSaldo();
+		Movimiento mov = new Movimiento(25,TipoMovimiento.DEBE);
+		c2.addMovimientoCuenta(mov);		
+		assertEquals(1,c2.getMovimientosCuenta().size(),()->"Movimiento no guardado");
+		assertTrue(saldoAnt==(c2.getSaldo()+mov.getImporte()),()->"No coincide el saldo");
+		c2.borraMovimientoCuenta(mov);
+		assertNull(c2.buscaMovimientoCuenta(mov),()->"El movimiento no se ha borrado");
+		
+		
 		
 	}
 

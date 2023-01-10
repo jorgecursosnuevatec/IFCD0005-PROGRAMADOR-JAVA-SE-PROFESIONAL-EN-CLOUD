@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.jgr.herencia.auxiliar.TipoMovimiento;
 
 
+
 /**
  * The Class MovimientoCuenta.
  */
@@ -106,6 +107,11 @@ public class Movimiento {
 	}
 
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	@Override
 	public String toString() {
 		return "Movimiento [numMovimiento=" + this.numMovimiento + ", importe=" + this.importe + ", tipo=" + this.tipo
@@ -113,12 +119,23 @@ public class Movimiento {
 	}
 
 
+	/**
+	 * Hash code.
+	 *
+	 * @return the int
+	 */
 	@Override
 	public int hashCode() {
 		return Objects.hash(importe, numMovimiento, tipo);
 	}
 
 
+	/**
+	 * Equals.
+	 *
+	 * @param obj the obj
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -131,8 +148,6 @@ public class Movimiento {
 		return Double.doubleToLongBits(this.importe) == Double.doubleToLongBits(other.importe)
 				&& this.numMovimiento == other.numMovimiento && this.tipo == other.tipo;
 	}
-	
-	
 	
 	
 
