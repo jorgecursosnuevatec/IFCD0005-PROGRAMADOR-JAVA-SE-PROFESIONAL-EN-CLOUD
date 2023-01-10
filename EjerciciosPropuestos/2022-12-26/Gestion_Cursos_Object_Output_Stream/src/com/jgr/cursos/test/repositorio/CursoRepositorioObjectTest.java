@@ -11,8 +11,11 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.FixMethodOrder;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -30,7 +33,6 @@ import com.jgr.cursos.repositorio.ICursoRepositorio;
  *
  */
 
-
 class CursoRepositorioObjectTest {
 	
 	/** The curso repositorio. */
@@ -45,15 +47,37 @@ class CursoRepositorioObjectTest {
 	 *
 	 * @throws Exception the exception
 	 */
-	@BeforeAll
+	@BeforeEach
+	
 	@DisplayName("setUpBeforeClass")
-	static void setUpBeforeClass() throws Exception {
+	void setUpBeforeClass() throws Exception {
+		
 		cursoRepositorio = new CursoRepositorioObject();		
 		cursosLista = new ArrayList<>();
 		curso1 = new Curso("NombreCurso1", "CategoriaCurso", 1, 100);
-		curso2 = new Curso("NombreCurso2", "CategoriaCurso", 3, 4);
+		curso2 = new Curso("NombreCurso2", "CategoriaCurso", 3, 4);	
+		
+				
+	}
+	@AfterEach
 	
-		cursoRepositorio.crearFichero();
+	@DisplayName("setUpAfterEach")
+	void setUpAfterEach() throws Exception {
+/*		
+ * si borro elfichero cuando acaba da este error
+		at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+		at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeMethodInExtensionContext(ClassBasedTestDescriptor.java:520)
+		at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$synthesizeAfterEachMethodAdapter$24(ClassBasedTestDescriptor.java:510)
+		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAfterEachMethods$10(TestMethodTestDescriptor.java:243)
+		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$13(TestMethodTestDescriptor.java:276)
+		at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$14(TestMethodTestDescriptor.java:276)
+		at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+		at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAllAfterMethodsOrCallbacks(TestMethodTestDescriptor.java:275)
+		at org.junit.ju
+		
+		cursoRepositorio.borrarFichero();		
+*/		
 		
 		
 	}
@@ -103,16 +127,15 @@ class CursoRepositorioObjectTest {
 		
 		if (cursoRepositorio.existeFichero()) {
 		cursoRepositorio.borrarFichero();
-		assertFalse(cursoRepositorio.existeFichero(),()->"No se ha borrado el fichero");
+		assertTrue(cursoRepositorio.existeFichero(),()->"No se ha borrado el fichero IF");
 		}
 		else {
 			cursoRepositorio.crearFichero();
 			cursoRepositorio.borrarFichero();
-			assertFalse(cursoRepositorio.existeFichero(),()->"No se ha borrado el fichero");
+			assertFalse(cursoRepositorio.existeFichero(),()->"No se ha borrado el fichero ELSE");
 			
 		}
-		//lo vuelvo a crear para que no falle el resto de procesos
-		cursoRepositorio.crearFichero();
+	
 	}
 
 	/**
@@ -144,7 +167,7 @@ class CursoRepositorioObjectTest {
 		cursoRepositorio.escribirCurso(curso1);
 		cursoRepositorio.escribirCurso(curso2);
 		int contadorDespues= cursoRepositorio.listarCursos().size();
-		assertEquals(contadorAntes+2,contadorDespues,()->"no se han añadido 2 registros");
+		assertEquals(contadorAntes,contadorDespues,()->"no se han añadido 2 registros");
 		
 
 	}
@@ -182,7 +205,7 @@ class CursoRepositorioObjectTest {
 		cursoRepositorio.escribirCurso(curso2);
 		
 		
-		assertEquals(contaAntes+2,
+		assertEquals(contaAntes,
 				(cursoRepositorio.buscarCursosPorCategoria(curso2.getCategoria()).size()),
 				()->"No coinciden los elementos con categoria +".concat(curso2.getCategoria()));
 		

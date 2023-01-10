@@ -100,7 +100,6 @@ public class CursoRepositorioObject implements ICursoRepositorio {
 	}
 
 		
-
 	
 	/**
 	 * Existe fichero.
@@ -170,7 +169,7 @@ public class CursoRepositorioObject implements ICursoRepositorio {
 		};
 		 
 		
-		System.out.println("Cursos leidos"+cursos.size());
+//		System.out.println("Cursos leidos"+cursos.size());
 		return this.cursos;
 
 		
@@ -203,7 +202,6 @@ try(ObjectInputStream ois = new ObjectInputStream(
 		
 		*/
 		
-	
 		
 		try(ObjectOutputStream oos = new ObjectOutputStream(
                 new FileOutputStream(this.nomFichero))) {
@@ -252,8 +250,6 @@ try(ObjectInputStream ois = new ObjectInputStream(
 	@Override
 	public Optional<Curso> buscarCursoPorNombre(String nombreCurso){
 	
-		
-		
 		return this.listarCursos()
 				.stream()
 				.filter(c->c.getNombre().equalsIgnoreCase(nombreCurso))
@@ -268,8 +264,6 @@ try(ObjectInputStream ois = new ObjectInputStream(
 	 */
 	@Override
 	public List<Curso> buscarCursosPorCategoria(String nombreCategoria){
-	
-		
 		
 		return this.listarCursos()
 				.stream()
@@ -281,23 +275,23 @@ try(ObjectInputStream ois = new ObjectInputStream(
 	public List<Curso> descontarPorcentajeDuracion(double duracion) {
 		
 		List<Curso> cursitos = cursos;
+		/*
 		cursos.clear();
-		
-		 cursitos.stream()
-		.peek(c->System.out.println("\ncurso antes->"+c.getNombre() +"duracion->"+c.getDuracion()))
+		*/
+		 cursos.stream()
+		///.peek(c->System.out.println("\ncurso antes->"+c.getNombre() +"duracion->"+c.getDuracion()))
 		.flatMap(curso->	{
 			if(curso.getDuracion()>duracion) {
-//				double calculo = (curso.getDuracion()*porcentaje)/100;
 				
 				curso.setDuracion(curso.getDuracion()-(curso.getDuracion()*0.10));
 			}
 			return Stream.of(curso);
 			
 		})
-		.peek(c->System.out.println("curso despues->"+c.getNombre() +"duracion->"+c.getDuracion()))
+//		.peek(c->System.out.println("curso despues->"+c.getNombre() +"duracion->"+c.getDuracion()))
 		.collect(Collectors.toList())
 		;
-		 cursos= cursitos;
+		 //cursos= cursitos;
 		 return cursos;
 			 
 
