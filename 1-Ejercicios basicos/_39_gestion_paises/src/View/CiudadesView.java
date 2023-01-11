@@ -3,8 +3,8 @@ package View;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Service.CiudadesService;
 import model.Ciudad;
+import service.CiudadesService;
 
 /*
 1.- Añadir ciudad
@@ -67,14 +67,14 @@ public class CiudadesView {
 	}
 	
 	static void masPoblada () {
-		Ciudad ciudad = ciudadesService.masPoblada();
+		Ciudad ciudad = ciudadesService.ciudadMasPoblada();
 		System.out.println("La ciudad más poblada es "+ciudad.getNombre()+ " que está en "+ciudad.getPais()+" y tiene "+ciudad.getHabitantes()+ " habitantes.");
 	}
 	
 	static void ciudadesPais() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Introduce pais: ");
-		ArrayList <Ciudad> arrayciudades = ciudadesService.ciudadesPais(sc.nextLine());
+		ArrayList <Ciudad> arrayciudades = ciudadesService.ciudadesPorPais(sc.nextLine());
 		System.out.println("Las ciudades son: ");
 		for ( int i=0;i<arrayciudades.size();i++) {
 			System.out.println(arrayciudades.get(i).getNombre());
