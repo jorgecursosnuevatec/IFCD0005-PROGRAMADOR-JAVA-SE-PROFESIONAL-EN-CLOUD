@@ -19,8 +19,6 @@ public class Circulo extends Figura {
 		super(color);
 		
 	}
-
-		
 	/**
 	 * Instantiates a new circulo.
 	 *

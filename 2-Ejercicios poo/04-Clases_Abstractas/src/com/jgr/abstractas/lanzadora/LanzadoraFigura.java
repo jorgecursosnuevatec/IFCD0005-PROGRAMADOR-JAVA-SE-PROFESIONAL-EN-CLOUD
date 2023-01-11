@@ -15,7 +15,8 @@ public class LanzadoraFigura {
 		Figura cir = new Circulo("Amarillo",15);
 		Figura tri = new Triangulo("Amarillo",15,10);
 		
-		System.out.print(cir instanceof Figura);
+		System.out.print("\ncirculo-figura->"+(cir instanceof Figura));
+		System.out.print("\tfigura-circlo>"+(cir instanceof Circulo));
 		
 
 	}

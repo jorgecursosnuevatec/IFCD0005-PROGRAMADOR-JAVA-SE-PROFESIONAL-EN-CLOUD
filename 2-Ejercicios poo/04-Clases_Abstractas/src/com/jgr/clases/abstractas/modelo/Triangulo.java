@@ -81,7 +81,7 @@ public class Triangulo extends Figura {
 	 */
 	@Override
 	public double superficie() {
-		return this.base*this.altura;
+		return (this.base*this.altura)/2;
 	}
 
 }
